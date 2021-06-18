@@ -1,0 +1,40 @@
+{% load static %}
+<div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>QR код</th>
+                    <th>Серийный номер</th>
+                    <th>Батарея</th>
+                    <th>Цена</th>
+                    <th>Питание</th>
+                    <th>Путь</th>
+                    <th>Статус</th>
+                    <th>Вкл./выкл.</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                      {%for el in trans%}
+                      <tr>
+                        <td>{{el.Qr_code}}</td>
+                        <td>{{el.Serial_number}}</td>
+                        <td>{{el.Battery}}</td>
+                        <td>{{el.Price}}</td>
+                        <td>{{el.Power}}</td>
+                          {% if el.trip is None%}
+                          <td></td>
+                          {% else %}
+                          <td>{{el.Trip}}</td>
+                          {% endif %}
+                        <td>{{el.Status}}</td>
+                        <td>{{el.Action}}</td>
+                      </tr>
+
+                      {% endfor%}
+                  </tfoot>
+                </table>
+
+              </div>
+              <!-- /.card-body -->
+

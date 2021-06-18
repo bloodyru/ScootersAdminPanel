@@ -1,0 +1,38 @@
+{% load static %}
+
+
+<div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Пользователь</th>
+                    <th>Устройство</th>
+                    <th>Статус</th>
+                    <th>Бронь</th>
+                    <th>Поездка</th>
+                    <th>Завершение</th>
+                    <th>Стоимость</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                      {%for el in user%}
+                      <tr>
+                        <td>{{el.id}}</td>
+                        <td>{{el.Name}} {{el.Soname}}</td>
+                        <td>{{el.Battery}}</td>
+                        <td>{{el.Price}}</td>
+                        <td>{{el.Power}}</td>
+                        <td>{{el.Trip}}</td>
+                        <td>{{el.Status}}</td>
+                        <td>{{el.Action}}</td>
+                      </tr>
+
+                      {% endfor%}
+                  </tfoot>
+                </table>
+
+              </div>
+              <!-- /.card-body -->
+

@@ -1,3 +1,4 @@
+
 {% load static %}
 
 
@@ -11,7 +12,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdminLTE 3 | Starter</title>
-
+<!-- DataTables -->
+  <link rel="stylesheet" href="{% static 'adm/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
+  <link rel="stylesheet" href="{% static 'adm/plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+  <link rel="stylesheet" href="{% static 'adm/plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
@@ -33,12 +37,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
 
-      {% include 'adm/content_header.html' %}
+      {% block content_header %}
+
+      {% endblock %}
 
     <!-- /.content-header -->
 
     <!-- Main content -->
-    {% include 'adm/main_content.html' %}
+     {% block main_content.html %}
+
+      {% endblock %}
+
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -58,7 +67,42 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{% static 'adm/plugins/jquery/jquery.min.js' %}"></script>
 <!-- Bootstrap 4 -->
 <script src="{% static 'adm/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- DataTables  & Plugins -->
+<script src="{% static 'adm/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'adm/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'adm/plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'adm/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'adm/plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'adm/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'adm/plugins/jszip/jszip.min.js' %}"></script>
+<script src="{% static 'adm/plugins/pdfmake/pdfmake.min.js' %}"></script>
+<script src="{% static 'adm/plugins/pdfmake/vfs_fonts.js' %}"></script>
+<script src="{% static 'adm/plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'adm/plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
+<script src="{% static 'adm/plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
+
+
 <!-- AdminLTE App -->
 <script src="{% static 'adm/dist/js/adminlte.min.js' %}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{% static 'adm/dist/js/demo.js' %}"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+  </script>
 </body>
 </html>
