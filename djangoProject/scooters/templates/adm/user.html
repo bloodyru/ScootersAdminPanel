@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Личная карточка пользователя</h1>
+            <h1 class="m-0">Пользователи</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -21,7 +21,7 @@
 {% endblock %}
 
 {% block main_content.html %}
-<section class="content">
+
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-3">
@@ -33,13 +33,13 @@
                   <img class="profile-user-img img-fluid img-circle" src="../../dist/img/user4-128x128.jpg" alt="Изображение профиля пользователя">
                 </div>
 
-                <h3 class="profile-username text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Имя Фамилия</font></font></h3>
+                <h3 class="profile-username text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{user.Name}} {{user.Soname}}</font></font></h3>
 
-                <p class="text-muted text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">+7993343623734</font></font></p>
+                <p class="text-muted text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{user.Phone}}</font></font></p>
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
-                    <b><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Email:</font></font></b> <a class="float-right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">qwe@qwe.asd</font></font></a>
+                    <b><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Email:</font></font></b> <a class="float-right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{user.Email}}</font></font></a>
                   </li>
                   <li class="list-group-item">
                     <b><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Последняя активность:</font></font></b> <a class="float-right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">02.03.2021</font></font></a>
@@ -369,6 +369,6 @@
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
-    </section>
+
 {% endblock %}
 

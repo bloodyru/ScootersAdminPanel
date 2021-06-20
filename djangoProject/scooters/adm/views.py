@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Transport, User
+from django.views.generic import DetailView
 
 def index(request):
     return render(request, 'adm/index.html')
@@ -12,11 +13,12 @@ def trips(request):
     name = "Поездки"
     user = User.objects.all()
     return render(request, 'adm/trips.html', {'user':user,'name':name})
+class UserInfo(DetailView):
+    model = User
+    template_name = 'adm/user.html'
+    context_object_name = 'user'
+
 def users(request):
     user = User.objects.all()
-    name = "Пользователи"
+    name = "Пользователb"
     return render(request, 'adm/users.html', {'user':user,'name':name})
-def user(request):
-    user = User.objects.all()
-    name = "Пользователь"
-    return render(request, 'adm/user.html', {'user':user,'name':name})

@@ -7,5 +7,5 @@ urlpatterns = [
     path('transport.html', views.transport, name='transport'),
     path('trips.html', views.trips, name='trips'),
     path('users.html', views.users, name='users'),
-    path('user.html', views.user, name='user'),
+    path('<int:pk>', views.UserInfo.as_view(), name='user'),
 ]
