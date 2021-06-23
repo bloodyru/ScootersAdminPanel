@@ -25,7 +25,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>ID</th>
+                    <th>id</th>
                     <th>Имя</th>
                     <th>Фамилия</th>
                     <th>Телефон</th>
@@ -41,9 +41,9 @@
 
                       {%for el in user%}
                       <tr>
-                        <td><a href="{% url 'user' el.id %}">{{el.id}}</a></td>
+                        <td>{{el.id}}</td>
                         <td><a href="{% url 'user' el.id %}">{{el.Name}}</a></td>
-                        <td><a href="#">{{el.Soname}}</a></td>
+                        <td><a href="{% url 'user' el.id %}">{{el.Soname}}</a></td>
                         <td>{{el.Phone}}</td>
                         <td>{{el.IsActive}}</td>
                         <td>{{el.Email}}</td>
@@ -55,7 +55,15 @@
                       {% endfor%}
                   </tfoot>
                 </table>
+                <div>
+                    <form method="post">
+                      {% csrf_token %}
+                      {{form.Name}} <br>
+                      {{form.DateOfRegistration}} <br>
+                      <button class="btn btn-succes" type="submit">submit</button>
 
+                    </form>
+                </div>
               </div>
               <!-- /.card-body -->
 {% endblock %}

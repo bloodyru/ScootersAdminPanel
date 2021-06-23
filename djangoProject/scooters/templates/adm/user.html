@@ -6,12 +6,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Пользователи</h1>
+            <h1 class="m-0">Пользователь</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">{% block content_header_breadcrumb %}ScooterADM{% endblock %}</a></li>
-              <li class="breadcrumb-item active">{{name}}</li>
+              <li class="breadcrumb-item"><a href="{% url 'transport'  %}">ScooterADM</a></li>
+              <li class="breadcrumb-item"><a href="{% url 'users'  %}">Пользователи</a></li>
+              <li class="breadcrumb-item active">Пользователь</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -26,71 +27,47 @@
         <div class="row">
           <div class="col-md-3">
 
-            <!-- Profile Image -->
-            <div class="card card-primary card-outline">
-              <div class="card-body box-profile">
-                <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle" src="../../dist/img/user4-128x128.jpg" alt="Изображение профиля пользователя">
-                </div>
-
-                <h3 class="profile-username text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{user.Name}} {{user.Soname}}</font></font></h3>
-
-                <p class="text-muted text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{user.Phone}}</font></font></p>
-
-                <ul class="list-group list-group-unbordered mb-3">
-                  <li class="list-group-item">
-                    <b><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Email:</font></font></b> <a class="float-right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{user.Email}}</font></font></a>
-                  </li>
-                  <li class="list-group-item">
-                    <b><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Последняя активность:</font></font></b> <a class="float-right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">02.03.2021</font></font></a>
-                  </li>
-                  <li class="list-group-item">
-                    <b><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Дата регистрации</font></font></b> <a class="float-right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">02.03.2021</font></font></a>
-                  </li>
-                </ul>
-
-                <a href="#" class="btn btn-primary btn-block"><b><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Следовать</font></font></b></a>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <!-- About Me Box -->
+            <!-- About User Box -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Обо мне</font></font></h3>
+                <h3 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Пользователь</font></font></h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <strong><i class="fas fa-book mr-1"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Образование</font></font></strong>
+                <strong><i class="fas fa-user mr-1"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Имя пользователя</font></font></strong>
 
                 <p class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                  Бакалавр компьютерных наук, Университет Теннесси в Ноксвилле.
+                  {{user.Name}} {{user.Soname}}
                 </font></font></p>
 
                 <hr>
 
-                <strong><i class="fas fa-map-marker-alt mr-1"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Место расположения</font></font></strong>
+                <strong><i class="fas fa-phone mr-1"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Телефон:</font></font></strong>
 
-                <p class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Малибу, Калифорния</font></font></p>
+                <p class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{user.Phone}}</font></font></p>
 
                 <hr>
 
-                <strong><i class="fas fa-pencil-alt mr-1"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Навыки и умения</font></font></strong>
+                <strong><i class="fas fa-at mr-1"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Email:</font></font></strong>
 
                 <p class="text-muted">
-                  <span class="tag tag-danger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Дизайн пользовательского интерфейса </font></font></span>
-                  <span class="tag tag-success"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Кодирование </font></font></span>
-                  <span class="tag tag-info"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">JavaScript </font></font></span>
-                  <span class="tag tag-warning"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">PHP </font></font></span>
-                  <span class="tag tag-primary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Node.js</font></font></span>
+                  <span class="tag tag-danger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{user.Email}}</font></font></span>
+
                 </p>
 
                 <hr>
 
-                <strong><i class="far fa-file-alt mr-1"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Заметки</font></font></strong>
+                <strong><i class="fas fa-calendar-day mr-1"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Дата регистрации</font></font></strong>
 
-                <p class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Lorem ipsum dolor sit amet, conctetur adipiscing elit. </font><font style="vertical-align: inherit;">Etiam fermentum enim neque.</font></font></p>
+                <p class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{user.DateOfRegistration}}</font></font></p>
+
+                <hr>
+
+                <strong><i class="fas fa-calendar-day mr-1"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Последняя активность</font></font></strong>
+
+                <p class="text-muted"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{user.LastActive}}</font></font></p>
+
+
               </div>
               <!-- /.card-body -->
             </div>
@@ -101,267 +78,59 @@
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Мероприятия</font></font></a></li>
-                  <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">График</font></font></a></li>
-                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Настройки</font></font></a></li>
+                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Баланс</font></font></a></li>
+                  <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Промокоды</font></font></a></li>
+                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Поездки</font></font></a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
                 <div class="tab-content">
-                  <div class="active tab-pane" id="activity">
-                    <!-- Post -->
-                    <div class="post">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg" alt="изображение пользователя">
-                        <span class="username">
-                          <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Джонатан Берк-младший</font></font></a>
-                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                        </span>
-                        <span class="description"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Опубликован публично - сегодня в 19:30</font></font></span>
-                      </div>
-                      <!-- /.user-block -->
-                      <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                        Lorem ipsum представляет собой давнюю традицию для дизайнеров, типографов и т. П. </font><font style="vertical-align: inherit;">Некоторые люди ненавидят его и выступают за его исчезновение, но другие игнорируют ненависть, поскольку они создают потрясающие инструменты, помогающие создать текст-заполнитель для всех, от любителей бекона до поклонников Чарли Шина.
-                      </font></font></p>
+                  <div class="tab-pane active" id="activity">
+                    <!-- Table1 -->
+                    <table  class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>Дата создания</th>
+                          <th>Бонусы</th>
+                          <th>Деньги</th>
+                          <th>Сумма</th>
+                          <th>Тип:</th>
+                          <th>Статус</th>
+                          <th>Дата проведения</th>
 
-                      <p>
-                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> доля</font></font></a>
-                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Нравиться</font></font></a>
-                        <span class="float-right">
-                          <a href="#" class="link-black text-sm">
-                            <i class="far fa-comments mr-1"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Комментарии (5)
-                          </font></font></a>
-                        </span>
-                      </p>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>{{user.UserBalance.DateOfCreation}}</td>
+                          <td><a href="{% url 'user' user.id %}">{{user.UserBalance.Bonuses}}</a></td>
+                          <td><a href="{% url 'user' user.id %}">{{user.UserBalance.Money}}</a></td>
+                          <td>{{user.UserBalance.Money}}</td>
+                          <td>{{user.UserBalance.TypeOperation}}</td>
+                          <td>{{user.UserBalance.Status}}</td>
+                          <td>{{user.UserBalance.DateOfOperation}}</td>
 
-                      <input class="form-control form-control-sm" type="text" placeholder="Введите комментарий">
-                    </div>
-                    <!-- /.post -->
+                        </tr>
 
-                    <!-- Post -->
-                    <div class="post clearfix">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="Изображение пользователя">
-                        <span class="username">
-                          <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Сара Росс</font></font></a>
-                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                        </span>
-                        <span class="description"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Отправил вам сообщение - 3 дня назад</font></font></span>
-                      </div>
-                      <!-- /.user-block -->
-                      <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                        Lorem ipsum представляет собой давнюю традицию для дизайнеров, типографов и т. П. </font><font style="vertical-align: inherit;">Некоторые люди ненавидят его и выступают за его исчезновение, но другие игнорируют ненависть, поскольку они создают потрясающие инструменты, помогающие создать текст-заполнитель для всех, от любителей бекона до поклонников Чарли Шина.
-                      </font></font></p>
 
-                      <form class="form-horizontal">
-                        <div class="input-group input-group-sm mb-0">
-                          <input class="form-control form-control-sm" placeholder="Ответ">
-                          <div class="input-group-append">
-                            <button type="submit" class="btn btn-danger"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">послать</font></font></button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                    <!-- /.post -->
+                    </table>
 
-                    <!-- Post -->
-                    <div class="post">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="Изображение пользователя">
-                        <span class="username">
-                          <a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Адам Джонс</font></font></a>
-                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                        </span>
-                        <span class="description"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Опубликовано 5 фото - 5 дней назад</font></font></span>
-                      </div>
-                      <!-- /.user-block -->
-                      <div class="row mb-3">
-                        <div class="col-sm-6">
-                          <img class="img-fluid" src="../../dist/img/photo1.png" alt="Фото">
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-6">
-                          <div class="row">
-                            <div class="col-sm-6">
-                              <img class="img-fluid mb-3" src="../../dist/img/photo2.png" alt="Фото">
-                              <img class="img-fluid" src="../../dist/img/photo3.jpg" alt="Фото">
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-sm-6">
-                              <img class="img-fluid mb-3" src="../../dist/img/photo4.jpg" alt="Фото">
-                              <img class="img-fluid" src="../../dist/img/photo1.png" alt="Фото">
-                            </div>
-                            <!-- /.col -->
-                          </div>
-                          <!-- /.row -->
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.row -->
+                    <!-- /.Table1 -->
 
-                      <p>
-                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> доля</font></font></a>
-                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Нравиться</font></font></a>
-                        <span class="float-right">
-                          <a href="#" class="link-black text-sm">
-                            <i class="far fa-comments mr-1"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Комментарии (5)
-                          </font></font></a>
-                        </span>
-                      </p>
-
-                      <input class="form-control form-control-sm" type="text" placeholder="Введите комментарий">
-                    </div>
-                    <!-- /.post -->
                   </div>
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="timeline">
-                    <!-- The timeline -->
-                    <div class="timeline timeline-inverse">
-                      <!-- timeline time label -->
-                      <div class="time-label">
-                        <span class="bg-danger">
-                          10 Feb. 2014
-                        </span>
-                      </div>
-                      <!-- /.timeline-label -->
-                      <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-envelope bg-primary"></i>
-
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 12:05</span>
-
-                          <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                          <div class="timeline-body">
-                            Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                            weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                            jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                            quora plaxo ideeli hulu weebly balihoo...
-                          </div>
-                          <div class="timeline-footer">
-                            <a href="#" class="btn btn-primary btn-sm">Read more</a>
-                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- END timeline item -->
-                      <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-user bg-info"></i>
-
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
-
-                          <h3 class="timeline-header border-0"><a href="#">Sarah Young</a> accepted your friend request
-                          </h3>
-                        </div>
-                      </div>
-                      <!-- END timeline item -->
-                      <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-comments bg-warning"></i>
-
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 27 mins ago</span>
-
-                          <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                          <div class="timeline-body">
-                            Take me to your leader!
-                            Switzerland is small and neutral!
-                            We are more like Germany, ambitious and misunderstood!
-                          </div>
-                          <div class="timeline-footer">
-                            <a href="#" class="btn btn-warning btn-flat btn-sm">View comment</a>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- END timeline item -->
-                      <!-- timeline time label -->
-                      <div class="time-label">
-                        <span class="bg-success">
-                          3 Jan. 2014
-                        </span>
-                      </div>
-                      <!-- /.timeline-label -->
-                      <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-camera bg-purple"></i>
-
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 2 days ago</span>
-
-                          <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                          <div class="timeline-body">
-                            <img src="https://placehold.it/150x100" alt="...">
-                            <img src="https://placehold.it/150x100" alt="...">
-                            <img src="https://placehold.it/150x100" alt="...">
-                            <img src="https://placehold.it/150x100" alt="...">
-                          </div>
-                        </div>
-                      </div>
-                      <!-- END timeline item -->
-                      <div>
-                        <i class="far fa-clock bg-gray"></i>
-                      </div>
-                    </div>
+                    ddsfghjklkjhgfcdghjk
                   </div>
                   <!-- /.tab-pane -->
 
                   <div class="tab-pane" id="settings">
-                    <form class="form-horizontal">
-                      <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
-                        <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputName" placeholder="Name">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Name">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
-                        <div class="col-sm-10">
-                          <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-danger">Submit</button>
-                        </div>
-                      </div>
-                    </form>
+                    htgfvfdcdcd0987654321234567
                   </div>
                   <!-- /.tab-pane -->
                 </div>
                 <!-- /.tab-content -->
-              </div><!-- /.card-body -->
+              </div><!-- /.card-body --><!-- /.card-body -->
             </div>
             <!-- /.card -->
           </div>
@@ -369,6 +138,7 @@
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
+
 
 {% endblock %}
 

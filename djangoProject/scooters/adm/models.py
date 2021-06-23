@@ -13,6 +13,7 @@ class Transport(models.Model):
         return str(self.Qr_code)
 
 class User(models.Model):
+    id = models.IntegerField(primary_key=True)
     Ico = models.ImageField()
     Name = models.CharField(max_length=30, null=True)
     Soname = models.CharField(max_length=30, null=True)
@@ -22,6 +23,21 @@ class User(models.Model):
     LastActive = models.DateTimeField()
     DateOfRegistration = models.DateTimeField()
     PresentCode = models.CharField(max_length=30, null=True)
+    UserBalance = models.ForeignKey('Balance', on_delete=models.DO_NOTHING, null=True)
 
     def __str__(self):
         return str(self.Name)
+
+class Balance(models.Model):
+    id = models.IntegerField(primary_key=True)
+    Name = models.CharField(max_length=30, null=True)
+    Soname = models.CharField(max_length=30, null=True)
+    DateOfCreation = models.DateTimeField()
+    Bonuses = models.IntegerField(null=True)
+    Money = models.IntegerField(null=True)
+    TypeOperation = models.CharField(max_length=10, null=True)
+    Status = models.CharField(max_length=10, null=True)
+    DateOfOperation = models.DateTimeField(blank = True, null = True)
+
+    def __str__(self):
+        return str(self.DateOfCreation, self.Bonuses, self.Money, self.TypeOperation, self.Status, self.DateOfOperation)

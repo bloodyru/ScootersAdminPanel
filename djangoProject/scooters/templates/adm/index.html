@@ -27,11 +27,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <div class="wrapper">
 
   <!-- Navbar -->
+
     {% include 'adm/main_header.html' %}
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-    {% include 'adm/sidebar.html' %}
+
+    {% include 'adm/sidebar.html' with person="active" %}
+
+
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
