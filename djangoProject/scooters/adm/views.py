@@ -23,13 +23,22 @@ class UserInfo(DetailView):
 
 
 def users(request):
+    error =  ''
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            form.save()
+        else:
+            error = form.errors
+
     user = User.objects.all()
     name = "Пользователи"
     form = UserForm()
     data = {
         'form': form,
         'user': user,
-        'name': name
+        'name': name,
+        'error':error
     }
 
 

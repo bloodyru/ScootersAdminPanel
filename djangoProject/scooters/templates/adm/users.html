@@ -59,7 +59,7 @@
                     <form method="post">
                       {% csrf_token %}
                       {{form.Name}} <br>
-                      {{form.DateOfRegistration}} <br>
+                        <span>{{error}}</span>
                       <button class="btn btn-succes" type="submit">submit</button>
 
                     </form>
