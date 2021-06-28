@@ -29,7 +29,7 @@
 <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-2">
 
             <!-- Profile Image -->
             <div class="card card-primary card-outline">
@@ -46,24 +46,21 @@
                         <div>
                             <div style="font-weight:bold" >Qr code</div>
                             <div style="font-weight:bold" >Заряд</div>
-                            <div style="font-weight:bold" >Right 1</div>
                         </div>
                         <div>
                             <div>Left 2</div>
                             <div>Center 2</div>
-                            <div>Right 2</div>
                         </div>
                         <div>
                             <div>Left 3</div>
                             <div>Center 3</div>
-                            <div>Right 3</div>
                         </div>
                     </div>
 
               </div>
             </div>
           </div>
-          <div class="col-md-9">
+          <div class="col-md-10">
               <style>
 			    #mapid{
 				height: 550px;
@@ -79,7 +76,8 @@
     </section>
 
 <script>
-var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+
+var mymap = L.map('mapid').setView([48.470987, 135.092935], 13);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -99,6 +97,10 @@ var circle = L.circle([51.508, -0.11], {
     radius: 500
 }).addTo(mymap);
 
+var latlngs = [[48.478276, 135.076686],[48.476256, 135.073337],[48.478133, 135.078104],[48.483396, 135.07703]];
+
+var polygon1 = L.polygon(latlngs, {color: 'red'}).addTo(mymap);
+
 var polygon = L.polygon([
     [51.509, -0.08],
     [51.503, -0.06],
@@ -106,14 +108,22 @@ var polygon = L.polygon([
 ]).addTo(mymap);
 
 var popup = L.popup();
-
+var poly = [];
 function onMapClick(e) {
     popup
         .setLatLng(e.latlng)
         .setContent("You clicked the map at " + e.latlng.toString())
         .openOn(mymap);
+        poly.push(e.latlng.toString());
+        console.log(poly);
+
 }
 
 mymap.on('click', onMapClick);
+
+
+
+
+
 </script>
 {% endblock %}
