@@ -1,31 +1,31 @@
 
     <!-- Table1 -->
-    <table  class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th>Код</th>
-          <th>Тип операции</th>
-          <th>Информация</th>
-          <th>Статус</th>
-          <th>Начало</th>
-          <th>Конец</th>
-          <th>Дата создания</th>
-          <th>Дата активации</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{user.UserBalance.DateOfCreation}}</td>
-          <td><a href="{% url 'user' user.id %}">{{user.UserBalance.Bonuses}}</a></td>
-          <td><a href="{% url 'user' user.id %}">{{user.UserBalance.Money}}</a></td>
-          <td>{{user.UserBalance.Money}}</td>
-          <td>{{user.UserBalance.TypeOperation}}</td>
-          <td>{{user.UserBalance.Status}}</td>
-          <td>{{user.UserBalance.DateOfOperation}}</td>
-          <td>{{user.UserBalance.DateOfOperation}}</td>
-        </tr>
+      <table  class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Код</th>
+            <th>Тип операции</th>
+            <th>Информация</th>
+            <th>Статус</th>
+            <th>Начало</th>
+            <th>Конец</th>
+            <th>Дата создания</th>
+            <th>Дата активации</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{user.UserBalance.DateOfCreation}}</td>
+            <td><a href="{% url 'user' user.id %}">{{user.UserBalance.Bonuses}}</a></td>
+            <td><a href="{% url 'user' user.id %}">{{user.UserBalance.Money}}</a></td>
+            <td>{{user.UserBalance.Money}}</td>
+            <td>{{user.UserBalance.TypeOperation}}</td>
+            <td>{{user.UserBalance.Status}}</td>
+            <td>{{user.UserBalance.DateOfOperation}}</td>
+            <td>{{user.UserBalance.DateOfOperation}}</td>
+          </tr>
 
 
-    </table>
+      </table>
 
     <!-- /.Table1 -->
