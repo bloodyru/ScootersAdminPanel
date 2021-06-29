@@ -45,4 +45,5 @@ def users(request):
     return render(request, 'adm/users.html', data)
 def map(request):
     name = "Карта"
-    return render(request, 'adm/content/map.html', {'name':name})
+    trans = Transport.objects.all()
+    return render(request, 'adm/content/map.html', {'trans':trans,'name':name})
