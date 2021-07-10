@@ -9,4 +9,5 @@ urlpatterns = [
     path('users.html', views.users, name='users'),
     path('<int:pk>', views.UserInfo.as_view(), name='user'),
     path('map.html', views.map, name='map'),
+    path('zone.html', views.zone, name='zone'),
 ]

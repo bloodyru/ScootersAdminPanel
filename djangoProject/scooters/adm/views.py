@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import Transport, User,Balance
+from .models import Transport, User,Balance,Zone
 from django.views.generic import DetailView
 from .forms import UserForm
 
@@ -47,3 +47,8 @@ def map(request):
     name = "Карта"
     trans = Transport.objects.all()
     return render(request, 'adm/content/map.html', {'trans':trans,'name':name})
+
+def zone(request):
+    name = "Зоны"
+    zone = Zone.objects.all()
+    return render(request, 'adm/zone.html', {'zone':zone,'name':name})

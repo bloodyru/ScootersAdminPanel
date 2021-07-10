@@ -41,3 +41,12 @@ class Balance(models.Model):
 
     def __str__(self):
         return str(self.DateOfCreation, self.Bonuses, self.Money, self.TypeOperation, self.Status, self.DateOfOperation)
+
+class Zone(models.Model):
+    id = models.IntegerField(primary_key=True)
+    Name = models.CharField(max_length=30, null=True)
+    TypeZone = models.CharField(max_length=30, null=True)
+    GPSPoints = models.TextField()
+    ColorZone = models.CharField(max_length=30, null=True)
+    def __str__(self):
+        return str(self.Name, self.TypeZone, self.GPSPoints)
