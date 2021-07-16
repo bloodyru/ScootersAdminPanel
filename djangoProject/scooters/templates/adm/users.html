@@ -42,8 +42,8 @@
                       {%for el in user%}
                       <tr>
                         <td>{{el.id}}</td>
-                        <td><a href="{% url 'user' el.id %}">{{el.Name}}</a></td>
-                        <td><a href="{% url 'user' el.id %}">{{el.Soname}}</a></td>
+                        <td><a href="{{ el.get_absolute_url}}">{{el.Name}}</a></td>
+                        <td><a href="{{ el.get_absolute_url}}">{{el.Soname}}</a></td>
                         <td>{{el.Phone}}</td>
                         <td>{{el.IsActive}}</td>
                         <td>{{el.Email}}</td>

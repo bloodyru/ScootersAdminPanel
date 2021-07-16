@@ -1,0 +1,98 @@
+{% extends 'adm/index.html' %}
+{% load static %}
+{% block content_header %}
+
+<div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">{{name}}</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">{% block content_header_breadcrumb %}ScooterADM{% endblock %}</a></li>
+              <li class="breadcrumb-item active">{{name}}</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+
+{% endblock %}
+
+{% block main_content.html %}
+
+<section class="content">
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3">
+
+            <!-- Profile Image -->
+            <div class="card card-primary card-outline">
+              <div class="card-body box-profile" style="padding: 0.25rem;">
+                <style>
+                .soflex2 > div
+                {
+                    display: flex;
+                    justify-content: space-between;
+                }
+                </style>
+                  <div class="card">
+              <div class="card-body table-responsive p-0" >
+                    <form method="post" name="my_form">
+                      {% csrf_token %}
+                      {{form.Name}} <br>
+                      {{form.TypeZone}} <br>
+                      {{form.GPSPoints}} <br>
+                      {{form.ColorZone}} <br>
+                      <span>{{error}}</span>
+                      <button class="btn btn-succes" type="submit" value="Update">submit</button>
+
+                    </form>
+              </div>
+            </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9">
+              <style>
+			    #mapid{
+				height: 70vh;
+				width:100%;
+				margin:0;
+			    }
+	           </style>
+                <div id="mapid" class="card">
+                </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<script>
+
+var mymap = L.map('mapid').setView([48.470987, 135.092935], 13);
+
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'pk.eyJ1IjoiYmxvb2R5cnUiLCJhIjoiY2txYnpjMnoxMDNyODJ1cDliaGlsOGdlNCJ9.lmO1vBnXQzD21BQBAwhJhQ'
+}).addTo(mymap);
+
+
+function onMapClick(e) {
+    L.circle([48.470987, 135.092935], {color: 'red',radius: 500}).addTo(mymap);
+    alert("You clicked the map at " + e.latlng);
+}
+
+mymap.on('click', onMapClick);
+
+
+
+
+</script>
+{% endblock %}

@@ -20,7 +20,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="transport.html" class="nav-link {{person}}">
+            <a href="{% url 'transport' %}" class="nav-link {{person}}">
               <i class="nav-icon fas fa-bicycle"></i>
               <p>
                 Транспорт
@@ -36,7 +36,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="users.html" class="nav-link">
+            <a href="{% url 'users' %}" class="nav-link">
               <i class="nav-icon fa fa-id-card"></i>
               <p>
                 Пользователи
@@ -44,7 +44,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="trips.html" class="nav-link">
+            <a href="{% url 'trips' %}" class="nav-link">
               <i class="nav-icon fa fa-database"></i>
               <p>
                 Поездки

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Transport(models.Model):
     Qr_code = models.IntegerField(null=False, unique = True)
@@ -27,6 +28,8 @@ class User(models.Model):
 
     def __str__(self):
         return str(self.Name)
+    def get_absolute_url(self):
+        return reverse('user', kwargs={'user_id':self.pk})
 
 class Balance(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -42,11 +45,19 @@ class Balance(models.Model):
     def __str__(self):
         return str(self.DateOfCreation, self.Bonuses, self.Money, self.TypeOperation, self.Status, self.DateOfOperation)
 
+class TypeOfZone(models.Model):
+    TypeZone = models.CharField(max_length=30, null=True)
+    def __str__(self):
+        return str(self.TypeZone)
+
 class Zone(models.Model):
     id = models.IntegerField(primary_key=True)
     Name = models.CharField(max_length=30, null=True)
-    TypeZone = models.CharField(max_length=30, null=True)
+    TypeZone = models.ForeignKey(TypeOfZone, on_delete=models.SET_NULL, null=True)
     GPSPoints = models.TextField()
     ColorZone = models.CharField(max_length=30, null=True)
     def __str__(self):
-        return str(self.Name, self.TypeZone, self.GPSPoints)
+        return str(self.Name)
+
+    def get_absolute_url(self):
+        return reverse('zoneredactor', kwargs={'pk': self.pk})

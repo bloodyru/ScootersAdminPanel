@@ -27,7 +27,19 @@
       <div class="container-fluid">
               <div class="info-box" style="min-height: 0px; padding: 0.1rem;">
               <div class="info-box-content" >
-                <font style="vertical-align: inherit;">...Зон</font>                <font style="vertical-align: inherit;">...Зон</font>
+                <table>
+                    <tr>
+                        <td><font style="text-align: left;">{{summ}} - {{nn}}
+                        </font></td>
+                        <td style="text-align: right;">
+                            <a href="{% url 'zone' %}">
+                            Добавить
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+
+
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -68,7 +80,7 @@
                     </font></td>
                     <td style="padding: 0.2rem;">
                      <font style="vertical-align: inherit;">
-                      <a href="{% url 'zone' %}">
+                      <a href="{{el.get_absolute_url}}">
                                     Редактировать
                                     </a>
                     </font></td>
@@ -79,6 +91,7 @@
                 </table>
               </div>
             </div>
+
               </div>
             </div>
           </div>
@@ -118,6 +131,9 @@ var circle = L.circle([51.508, -0.11], {
     fillOpacity: 0.5,
     radius: 500
 }).addTo(mymap);
+
+
+
 
 var latlngs = [[48.478276, 135.076686],[48.476256, 135.073337],[48.478133, 135.078104],[48.483396, 135.07703]];
 
