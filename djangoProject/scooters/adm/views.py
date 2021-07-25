@@ -66,10 +66,12 @@ def zone(request):
 
     return render(request, 'adm/zone.html', {'zone':zone,'name':name, 'summ':summ, 'nn':nn})
 
+
 class Zoneredactor(UpdateView):
     model = Zone
     template_name_suffix = 'redactor'
     fields = ["Name", "TypeZone", "GPSPoints", "ColorZone"]
+
     # form_class = ZoneredactorForm
     # error = ''
     # if request.method == 'POST':
