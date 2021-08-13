@@ -11,4 +11,6 @@ urlpatterns = [
     path('map.html', views.map, name='map'),
     path('zone.html', views.zone, name='zone'),
     path('zoneredactor/<int:pk>', views.Zoneredactor.as_view(), name='zoneredactor'),
+    path('zonenew.html', views.Newzone.as_view(), name='zonenew'),
+    path('delete/<int:pk>', views.deletezone, name='deletezone'),
 ]

@@ -1,6 +1,3 @@
-
-
-
 var mymap = L.map('mapid').setView([48.470987, 135.092935], 13);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -13,25 +10,26 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(mymap);
 
 var polygonfieldstring = document.getElementById('id_GPSPoints').value;
-console.log(polygonfieldstring)
-var mass = polygonfieldstring.split(",");
-var ans = [];
-for(var k=0;k<mass.length;){
-    var latLong = mass[k].split();
-    ans.push([ parseFloat(mass[k]), parseFloat(mass[k+1]) ]);
+var colorzone = document.getElementById('id_ColorZone').value;
+console.log(colorzone);
+var tomassive = polygonfieldstring.split(",");
+var gpsmassive = [];
+for(var k=0;k<tomassive.length;){
+    var latLong = tomassive[k].split();
+    gpsmassive.push([parseFloat(tomassive[k]), parseFloat(tomassive[k+1]) ]);
     k=k+2
 }
-console.log(ans)
 
-var polygon = L.polygon([
-    ans
-]).addTo(mymap);
-var polyForDb = [];
+var polygon = L.polygon(
+    gpsmassive,{color: colorzone}
+).addTo(mymap);
+
+var polygonForDb = [];
 function onMapClick(e) {
-    polyForDb.push(e.latlng.lat);
-    polyForDb.push(e.latlng.lng);
+    polygonForDb.push(e.latlng.lat);
+    polygonForDb.push(e.latlng.lng);
 
-    document.getElementById('id_GPSPoints').value = polyForDb;
+    document.getElementById('id_GPSPoints').value = polygonForDb;
 }
 
 mymap.on('click', onMapClick);

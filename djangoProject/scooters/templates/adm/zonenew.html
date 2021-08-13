@@ -39,15 +39,19 @@
                 }
                 </style>
                   <div class="card">
-              <div class="card-body table-responsive p-0" >
-                    <form method="post" name="my_form">
+                    <div class="card-body table-responsive p-0" >
+                    <form method="post" action="zonenew.html">
                       {% csrf_token %}
+                      <label>Введите название зоны</label><br>
                       {{form.Name}} <br>
+                      <label>Выберите тип зоны</label><br>
                       {{form.TypeZone}} <br>
+                       <label>Нарисуйте зону на карте</label>
                       {{form.GPSPoints}} <br>
+                      <label>Выберите цвет зоны</label><br>
                       {{form.ColorZone}} <br>
-                      <span>{{error}}</span>
-                      <button class="btn btn-success" type="submit" value="Update">Изменить</button>
+                        <span>{{error}}</span>
+                      <button class="btn btn-success" type="submit" value="Save">Добавить</button>
 
                     </form>
               </div>
@@ -75,6 +79,27 @@
   crossorigin=""></script>
 
 
-<script src="/static/adm/dist/js/zoneredactor.js">
+<script >
+var mymap = L.map('mapid').setView([48.470987, 135.092935], 13);
+
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'pk.eyJ1IjoiYmxvb2R5cnUiLCJhIjoiY2txYnpjMnoxMDNyODJ1cDliaGlsOGdlNCJ9.lmO1vBnXQzD21BQBAwhJhQ'
+}).addTo(mymap);
+
+var polygonForDb = [];
+function onMapClick(e) {
+    polygonForDb.push(e.latlng.lat);
+    polygonForDb.push(e.latlng.lng);
+
+    document.getElementById('id_GPSPoints').value = polygonForDb;
+}
+
+mymap.on('click', onMapClick);
+
 </script>
 {% endblock %}

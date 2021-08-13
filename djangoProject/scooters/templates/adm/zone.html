@@ -32,7 +32,7 @@
                         <td><font style="text-align: left;">{{summ}} - {{nn}}
                         </font></td>
                         <td style="text-align: right;">
-                            <a href="{% url 'zone' %}">
+                            <a href="{% url 'zonenew' %}">
                             Добавить
                             </a>
                         </td>
@@ -63,26 +63,31 @@
 
                   <thead>
                   <tr>
+                    <th style="padding: 0.2rem;" ><font style="vertical-align: inherit;"></font></th>
                     <th style="padding: 0.2rem;" ><font style="vertical-align: inherit;">Имя</font></th>
                     <th style="padding: 0.2rem;"><font style="vertical-align: inherit;">Тип</font></th>
-                    <th style="padding: 0.2rem;"><font style="vertical-align: inherit;">Действие</font></th>
                   </tr>
                   </thead>
                   <tbody>
                   {%for el in zone%}
                    <tr>
-                    <td style="padding: 0.2rem;">
-                      <font style="vertical-align: inherit;">
-                      {{el.Name}}
-                    </font></td>
-                    <td style="padding: 0.2rem;"><font style="vertical-align: inherit;">
-                        {{el.TypeZone}}
-                    </font></td>
-                    <td style="padding: 0.2rem;">
-                     <font style="vertical-align: inherit;">
+                    <td style="padding: 0.2rem;background-color:{{el.ColorZone}}">
+                      <font style="font-size: 13px;vertical-align: inherit;font-weight:Thin;color:black;text-shadow: 1px 1px 1px black ">
+
+                      <a href="delete/{{el.pk}}">
+                        <i class="nav-icon fas fa-trash" ></i></font>
+                      </a>
+                    </td>
+                    <td style="padding: 0.2rem;background-color:{{el.ColorZone}};">
                       <a href="{{el.get_absolute_url}}">
-                                    Редактировать
-                                    </a>
+                      <font style="vertical-align: inherit; color:#000000;font-weight:Medium">
+                      {{el.Name}}
+                      </a>
+                    </font></td>
+                    <td style="padding: 0.2rem;background-color:{{el.ColorZone}}"><font style="vertical-align: inherit; color:#000000">
+                        <a href="{{el.get_absolute_url}}">
+                        {{el.TypeZone}}
+                        </a>
                     </font></td>
                    </tr>
                       {% endfor%}
@@ -142,7 +147,7 @@ var circle = L.circle([51.508, -0.11], {
 
 
 
-var latlngs = [[48.478276, 135.076686],[48.476256, 135.073337],[48.478133, 135.078104],[48.483396, 135.07703]];
+var latlngs = [[135.076686, 48.478276],[135.073337,48.476256],[135.078104,48.478133],[135.07703,48.483396]];
 
 var polygon1 = L.polygon(latlngs, {color: 'red'}).addTo(mymap);
 
@@ -151,6 +156,32 @@ var polygon = L.polygon([
     [51.503, -0.06],
     [51.51, -0.047]
 ]).addTo(mymap);
+
+function polygoncreator(gpsmassive,colorzone){
+    var polygon = L.polygon( gpsmassive,{color: colorzone}).addTo(mymap);
+    console.log(colorzone)
+}
+
+colorzone = {{datacolor|safe}}
+console.log(colorzone)
+gps = {{datagps|safe}}
+
+biggpsmassive = []
+for(var i=0;i<gps.length;){
+    var arraygps = gps[i].split(",").map(Number);
+    i=i+1
+    var gpsmassive = [];
+    for(var k=0;k<arraygps.length;){
+        gpsmassive.push([arraygps[k], arraygps[k+1]]);
+        k=k+2
+        }
+    console.log(gpsmassive)
+    polygoncreator(gpsmassive,colorzone[i-1]);
+}
+
+
+
+
 
 var popup = L.popup();
 var poly = [];
