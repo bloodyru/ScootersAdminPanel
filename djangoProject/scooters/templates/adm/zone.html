@@ -73,22 +73,28 @@
                    <tr>
                     <td style="padding: 0.2rem;background-color:{{el.ColorZone}}">
                       <font style="font-size: 13px;vertical-align: inherit;font-weight:Thin;color:black;text-shadow: 1px 1px 1px black ">
-
                       <a href="delete/{{el.pk}}">
-                        <i class="nav-icon fas fa-trash" ></i></font>
+                        <i class="nav-icon fas fa-trash" ></i>
                       </a>
+                      </font>
                     </td>
                     <td style="padding: 0.2rem;background-color:{{el.ColorZone}};">
+
                       <a href="{{el.get_absolute_url}}">
-                      <font style="vertical-align: inherit; color:#000000;font-weight:Medium">
+                        <font style="vertical-align: inherit; color:#000000;font-weight:Medium">
                       {{el.Name}}
+                        </font>
                       </a>
-                    </font></td>
-                    <td style="padding: 0.2rem;background-color:{{el.ColorZone}}"><font style="vertical-align: inherit; color:#000000">
-                        <a href="{{el.get_absolute_url}}">
+                    </td>
+                    <td style="padding: 0.2rem;background-color:{{el.ColorZone}}">
+
+                         <a href="{{el.get_absolute_url}}">
+                            <font style="vertical-align: inherit; color:#000000">
                         {{el.TypeZone}}
-                        </a>
-                    </font></td>
+                            </font>
+                         </a>
+
+                    </td>
                    </tr>
                       {% endfor%}
 
@@ -147,9 +153,9 @@ var circle = L.circle([51.508, -0.11], {
 
 
 
-var latlngs = [[135.076686, 48.478276],[135.073337,48.476256],[135.078104,48.478133],[135.07703,48.483396]];
+<!--var latlngs = [[135.076686, 48.478276],[135.073337,48.476256],[135.078104,48.478133],[135.07703,48.483396]];-->
 
-var polygon1 = L.polygon(latlngs, {color: 'red'}).addTo(mymap);
+<!--var polygon1 = L.polygon(latlngs, {color: 'red'}).addTo(mymap);-->
 
 var polygon = L.polygon([
     [51.509, -0.08],
@@ -178,21 +184,22 @@ for(var i=0;i<gps.length;){
     console.log(gpsmassive)
     polygoncreator(gpsmassive,colorzone[i-1]);
 }
-
-
+var newpolygon
+function drowpolygon(poly,e) {
+    if (poly.length>3){
+        mymap.removeLayer(newpolygon)
+       }
+    newpolygon = L.polygon( poly,{color: 'green'}).addTo(mymap);
+}
 
 
 
 var popup = L.popup();
 var poly = [];
 function onMapClick(e) {
-    popup
-        .setLatLng(e.latlng)
-        .setContent("You clicked the map at " + e.latlng.toString())
-        .openOn(mymap);
         poly.push([e.latlng.lat, e.latlng.lng]);
         console.log(poly);
-
+        drowpolygon(poly)
 }
 
 mymap.on('click', onMapClick);

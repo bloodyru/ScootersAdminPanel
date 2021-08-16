@@ -119,4 +119,4 @@ def deletezone(request, pk):
         zone.delete()
         return HttpResponseRedirect('/zone.html')
     except zone.DoesNotExist:
-        return HttpResponseNotFound("<h2>zone not found</h2>")
+        return HttpResponseNotFound("<h2>Zone not found</h2>")

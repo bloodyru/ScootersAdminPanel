@@ -90,12 +90,21 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     zoomOffset: -1,
     accessToken: 'pk.eyJ1IjoiYmxvb2R5cnUiLCJhIjoiY2txYnpjMnoxMDNyODJ1cDliaGlsOGdlNCJ9.lmO1vBnXQzD21BQBAwhJhQ'
 }).addTo(mymap);
+var poly = [];
+var newpolygon
+function drowpolygon(poly) {
+    if (poly.length>3){
+        mymap.removeLayer(newpolygon)
+       }
+    newpolygon = L.polygon( poly,{color: 'green'}).addTo(mymap);
+}
 
 var polygonForDb = [];
 function onMapClick(e) {
+    poly.push([e.latlng.lat, e.latlng.lng]);
     polygonForDb.push(e.latlng.lat);
     polygonForDb.push(e.latlng.lng);
-
+    drowpolygon(poly)
     document.getElementById('id_GPSPoints').value = polygonForDb;
 }
 
