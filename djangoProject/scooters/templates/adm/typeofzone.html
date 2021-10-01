@@ -1,0 +1,139 @@
+{% extends 'adm/index.html' %}
+{% load static %}
+{% block content_header %}
+
+<div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">{{name}}</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">{% block content_header_breadcrumb %}ScooterADM{% endblock %}</a></li>
+              <li class="breadcrumb-item active">{{name}}</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+
+{% endblock %}
+
+{% block main_content.html %}
+<style>
+body {font-family: "Lato", sans-serif;}
+.tablink {
+    background-color: #555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 20%;
+}
+
+.tablink:hover {
+    background-color: #777;
+}
+
+/* Style the tab content */
+.tabcontent {
+    color: white;
+    display: none;
+    padding: 0px;
+    text-align: left;
+}
+.block {
+      color: black;
+      width: 100%;
+      padding:10px;
+      border: solid 1px black;
+      float: left;
+     }
+
+#Zone_0 {background-color:red;}
+#Zone_1 {background-color:ff6633;}
+#Zone_2 {background-color:ff00ff;}
+#Zone_3 {background-color:blue;}
+#Zone_4 {background-color:green;}
+</style>
+</head>
+<body>
+<div style="padding: 10px;">
+<button class="tablink" onclick="openZone('Zone_0', this, 'red')" id="defaultOpen">{{typezone.0}}</button>
+<button class="tablink" onclick="openZone('Zone_1', this, 'ff6633')">{{typezone.1}}</button>
+<button class="tablink" onclick="openZone('Zone_2', this, 'ff00ff')">{{typezone.2}}</button>
+<button class="tablink" onclick="openZone('Zone_3', this, 'blue')">{{typezone.3}}</button>
+<button class="tablink" onclick="openZone('Zone_4', this, 'green')">{{typezone.4}}</button>
+
+<div id="Zone_0" class="tabcontent">
+  <div  class="block">
+    <div>
+      <h3>London</h3>
+    </div>
+    <div>
+      <form>
+       <p>В каких годах произошли самые известные извержения вулкана Кракатау?</p>
+       <p><input type="checkbox" name="a" value="1417"> 1417</p>
+       <p><input type="checkbox" name="a" value="1680" checked> 1680</p>
+       <p><input type="checkbox" name="a" value="1883" checked> 1883</p>
+       <p><input type="checkbox" name="a" value="1934"> 1934</p>
+       <p><input type="checkbox" name="a" value="2010"> 2010</p>
+       <p><input type="submit" value="Сохранить изменения"></p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="Zone_1" class="tabcontent">
+  <h3>Paris</h3>
+  <p>Paris is the capital of France.</p>
+  <p>Paris is the capital of France.</p>
+  <p>Paris is the capital of France.</p><p>Paris is the capital of France.</p>
+  <p>Paris is the capital of France.</p>
+  <p>Paris is the capital of France.</p>
+  <p>Paris is the capital of France.</p>
+  <p>Paris is the capital of France.</p>
+
+
+</div>
+
+<div id="Zone_2" class="tabcontent">
+  <h3>Tokyo</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div>
+
+<div id="Zone_3" class="tabcontent">
+  <h3>Oslo</h3>
+  <p>Oslo is the capital of Norway.</p>
+</div>
+
+<div id="Zone_4" class="tabcontent">
+  <h3>Oslo1</h3>
+  <p>Oslo1 is the capital of Norway.</p>
+</div>
+
+</div>
+<script>
+function openZone(cityName,elmnt,color) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+    }
+    document.getElementById(cityName).style.display = "block";
+    elmnt.style.backgroundColor = color;
+
+}
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+{% endblock %}
+

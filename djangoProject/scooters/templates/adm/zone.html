@@ -184,25 +184,7 @@ for(var i=0;i<gps.length;){
     console.log(gpsmassive)
     polygoncreator(gpsmassive,colorzone[i-1]);
 }
-var newpolygon
-function drowpolygon(poly,e) {
-    if (poly.length>3){
-        mymap.removeLayer(newpolygon)
-       }
-    newpolygon = L.polygon( poly,{color: 'green'}).addTo(mymap);
-}
 
-
-
-var popup = L.popup();
-var poly = [];
-function onMapClick(e) {
-        poly.push([e.latlng.lat, e.latlng.lng]);
-        console.log(poly);
-        drowpolygon(poly)
-}
-
-mymap.on('click', onMapClick);
 
 
 

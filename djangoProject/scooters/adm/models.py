@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 
+
 class Transport(models.Model):
     Qr_code = models.IntegerField(null=False, unique = True)
     Serial_number = models.IntegerField(null=False, unique = True)
@@ -55,7 +56,7 @@ class Zone(models.Model):
     Name = models.CharField(max_length=30, null=True)
     TypeZone = models.ForeignKey(TypeOfZone, on_delete=models.SET_NULL, null=True)
     GPSPoints = models.TextField()
-    ColorZone = models.CharField(max_length=30, null=True)
+    ColorZone =  models.CharField(max_length=7)
     def __str__(self):
         return str(self.Name)
 

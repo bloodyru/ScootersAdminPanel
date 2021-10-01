@@ -40,12 +40,17 @@
                 </style>
                   <div class="card">
               <div class="card-body table-responsive p-0" >
-                    <form method="post" name="my_form">
+                    <form method="post" name="ZoneredactorForm">
                       {% csrf_token %}
+                      <label>Введите название зоны</label><br>
                       {{form.Name}} <br>
+                      <label>Выберите тип зоны</label><br>
                       {{form.TypeZone}} <br>
+                       <label>Нарисуйте зону на карте</label>
                       {{form.GPSPoints}} <br>
+                      <label>Выберите цвет зоны</label><br>
                       {{form.ColorZone}} <br>
+                      <input id="id_hex_color" maxlength="7" name="hex_color" type="color"><br>
                       <span>{{error}}</span>
                       <button class="btn btn-success" type="submit" value="Update">Изменить</button>
 

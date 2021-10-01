@@ -50,7 +50,8 @@
                       {{form.GPSPoints}} <br>
                       <label>Выберите цвет зоны</label><br>
                       {{form.ColorZone}} <br>
-                        <span>{{error}}</span>
+                      <input id="id_hex_color" maxlength="7" name="hex_color" type="color"><br>
+                      <span>{{error}}</span>
                       <button class="btn btn-success" type="submit" value="Save">Добавить</button>
 
                     </form>
@@ -90,13 +91,31 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     zoomOffset: -1,
     accessToken: 'pk.eyJ1IjoiYmxvb2R5cnUiLCJhIjoiY2txYnpjMnoxMDNyODJ1cDliaGlsOGdlNCJ9.lmO1vBnXQzD21BQBAwhJhQ'
 }).addTo(mymap);
+
+window.addEventListener("load", startup, false);
+
+function watchColorPicker(event) {
+document.getElementById('id_ColorZone').value=document.getElementById('id_hex_color').value
+drowpolygon(poly)
+console.log("fihvwidhbc")
+}
+
+function startup() {
+  colorWell = document.querySelector("#id_hex_color");
+  colorWell.addEventListener("input", watchColorPicker, false);
+  colorWell.addEventListener("change", watchColorPicker, false);
+  colorWell.select();
+  console.log("startup")
+}
+
+
 var poly = [];
 var newpolygon
 function drowpolygon(poly) {
     if (poly.length>3){
         mymap.removeLayer(newpolygon)
        }
-    newpolygon = L.polygon( poly,{color: 'green'}).addTo(mymap);
+    newpolygon = L.polygon( poly,{color: document.getElementById('id_hex_color').value}).addTo(mymap);
 }
 
 var polygonForDb = [];

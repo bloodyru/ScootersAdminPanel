@@ -4,7 +4,7 @@ from django.core.management.commands import dumpdata
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.http import HttpResponseNotFound
-from .models import Transport, User, Balance, Zone
+from .models import Transport, User, Balance, Zone, TypeOfZone
 from django.views.generic import DetailView
 from .forms import UserForm, ZoneredactorForm, NewZoneForm
 from django.views.generic.edit import UpdateView, CreateView
@@ -120,3 +120,9 @@ def deletezone(request, pk):
         return HttpResponseRedirect('/zone.html')
     except zone.DoesNotExist:
         return HttpResponseNotFound("<h2>Zone not found</h2>")
+
+def typeofzone(request):
+    name = "Типы зон"
+    typezone = TypeOfZone.objects.all()
+    print(typezone[0])
+    return render(request, 'adm/typeofzone.html', {'name': name, 'typezone': typezone})
