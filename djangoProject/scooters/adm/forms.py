@@ -1,5 +1,5 @@
-from .models import User,Zone
-from django.forms import ModelForm,TextInput,SelectMultiple
+from .models import User,Zone, TypeOfZone
+from django.forms import ModelForm,TextInput,SelectMultiple,CheckboxInput
 from django import forms
 
 class GaeParamsForm(forms.Form):
@@ -64,6 +64,26 @@ class NewZoneForm(ModelForm):
             "ColorZone": TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'ColorZone'
+            }),
+
+        }
+class TypeOfZoneForm(ModelForm):
+    class Meta:
+        model = TypeOfZone
+        fields = ['TypeZone', 'ColorZone', 'CanYouScooterOnThisArea', 'CanYouParkingOnThisArea']
+        widgets = {
+            "TypeZone": TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Тип зоны'
+            }),
+            "ColorZone": TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Цвет зоны',
+                'style': 'width: 15%'
+            }),
+            "CanYouScooterOnThisArea": CheckboxInput(attrs={
+            }),
+            "CanYouParkingOnThisArea": CheckboxInput(attrs={
             }),
 
         }

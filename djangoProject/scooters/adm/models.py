@@ -48,6 +48,9 @@ class Balance(models.Model):
 
 class TypeOfZone(models.Model):
     TypeZone = models.CharField(max_length=30, null=True)
+    ColorZone = models.CharField(max_length=7, null=True)
+    CanYouScooterOnThisArea = models.BooleanField(null=True)
+    CanYouParkingOnThisArea = models.BooleanField(null=True)
     def __str__(self):
         return str(self.TypeZone)
 

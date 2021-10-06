@@ -13,7 +13,6 @@ window.addEventListener("load", startup, false);
 
 function watchColorPicker(event) {
 document.getElementById('id_ColorZone').value=document.getElementById('id_hex_color').value
-console.log("fihvwidhbc")
 drowpolygon(poly)
 }
 
@@ -28,7 +27,6 @@ function startup() {
 var polygonfieldstring = document.getElementById('id_GPSPoints').value;
 var colorzone = document.getElementById('id_ColorZone').value;
 document.getElementById('id_hex_color').value=document.getElementById('id_ColorZone').value
-console.log(colorzone);
 var tomassive = polygonfieldstring.split(",");
 var gpsmassive = [];
 for(var k=0;k<tomassive.length;){

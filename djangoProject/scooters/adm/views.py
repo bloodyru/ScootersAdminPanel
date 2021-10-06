@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponseNotFound
 from .models import Transport, User, Balance, Zone, TypeOfZone
 from django.views.generic import DetailView
-from .forms import UserForm, ZoneredactorForm, NewZoneForm
+from .forms import UserForm, ZoneredactorForm, NewZoneForm,TypeOfZoneForm
 from django.views.generic.edit import UpdateView, CreateView
 import json
 
@@ -62,6 +62,7 @@ def map(request):
 
 
 def zone(request):
+
     name = "Зоны"
     zone = Zone.objects.all()
     colorZone = serializers.serialize('json', Zone.objects.all())
@@ -70,7 +71,7 @@ def zone(request):
     for i in range(len(color)):
         color0 = color[i]  # берем первую строчку матрицы
         color0 = color0['fields']  # берем параметр fields, углубляемся
-        color0 = color0['ColorZone']  # Берем параметр GPSPoints, получаем строчку
+        color0 = color0['ColorZone']  # Берем параметр ColorZone, получаем строчку
         datacolor.append(color0)
     data = serializers.serialize('json', Zone.objects.all())
     gps = json.loads(data)  # конвертируем json to array
@@ -91,7 +92,6 @@ def zone(request):
         nn = 'зон'
     else:
         nn = 'зон.'
-
     return render(request, 'adm/zone.html',
                   {'zone': zone, 'name': name, 'summ': summ, 'nn': nn, 'datagps': datagps, 'datacolor': datacolor})
 
@@ -122,7 +122,28 @@ def deletezone(request, pk):
         return HttpResponseNotFound("<h2>Zone not found</h2>")
 
 def typeofzone(request):
+    error = ''
+    if request.method == 'POST': # если со страницы идет метод POST
+        form = TypeOfZoneForm(request.POST) # создаем экземпляр формы для типо зон
+        if form.is_valid(): # если форма правильно заполнена:
+            TypeOfZoneObject = TypeOfZone.objects.get(TypeZone = form.cleaned_data.get('TypeZone')) # получаем тип зоны из модели с TypeZone равным TypeZone со страницы
+            TypeOfZoneObject.ColorZone = form.cleaned_data.get('ColorZone') # значению .ColorZone модели TypeOfZoneObject, присваиваем значение со страницы
+            TypeOfZoneObject.CanYouScooterOnThisArea = form.cleaned_data.get('CanYouScooterOnThisArea')
+            TypeOfZoneObject.CanYouParkingOnThisArea = form.cleaned_data.get('CanYouParkingOnThisArea')
+            TypeOfZoneObject.save() # сохраняем модель
+        else:
+            error = form.errors # если форма заполнена не правильно отправляем ошибки на страницу
+    ColorTypeOfzone = serializers.serialize('json', TypeOfZone.objects.all())
+    color = json.loads(ColorTypeOfzone)  # конвертируем json to array
+    datacolor = []
+    for i in range(len(color)):
+        color0 = color[i]  # берем первую строчку матрицы
+        color0 = color0['fields']  # берем параметр fields, углубляемся
+        color0 = color0['ColorZone']  # Берем параметр ColorZone, получаем строчку
+        datacolor.append(color0)
+
     name = "Типы зон"
     typezone = TypeOfZone.objects.all()
-    print(typezone[0])
-    return render(request, 'adm/typeofzone.html', {'name': name, 'typezone': typezone})
+    form = TypeOfZoneForm(request.POST, initial={'TypeZone': typezone[0]})
+    return render(request, 'adm/typeofzone.html', {'name': name, 'typezone': typezone, 'datacolor':datacolor,
+                                                   'form':form, 'error': error})
