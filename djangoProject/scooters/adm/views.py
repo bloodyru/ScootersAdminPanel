@@ -150,7 +150,9 @@ def typeofzone(request):
     for i in massiv1: # присваиваем i поочереди каждое значение массива
         massiv[i[0]] = i # добавляем в словарь ключ с нулевым значением i и присваиваем ему всю i
         lengthMassiv=lengthMassiv+1 # увеличиваем переменную на 1
+    # massiv = serializers.serialize("json", massiv1)
     massiv = json.dumps(massiv) # говорим что словарь теперь json
+    # typezone = TypeOfZone.objects.all().values('TypeZone')
     typezone = TypeOfZone.objects.all()
     form = TypeOfZoneForm(request.POST, initial={'TypeZone': typezone[0]})
     return render(request, 'adm/typeofzone.html', {'name': name, 'typezone': typezone, 'datacolor':datacolor,

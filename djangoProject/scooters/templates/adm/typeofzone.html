@@ -64,14 +64,14 @@ body {font-family: "Lato", sans-serif;}
         <form name="ZoneredactorForm" method="post">
           {% csrf_token %}
           <div style="float: left width: 100%;">
-            <input id="TypeZone" type="text" name="TypeZone" readonly  value="{{typezone.0}}" style="border: none;font-size: 21pt;background-color:#f4f6f9">
+            <input id="{{typezone.0}}" type="text" name="TypeZone" readonly  value="{{typezone.0}}" style="border: none;font-size: 21pt;background-color:#f4f6f9">
           <hr />
           </div>
           <div style="float: left; width: 30%;">
-            <p>{{form.CanYouParkingOnThisArea}} Парковка разрешена</p>
+            <input type="checkbox" id="CanYouParkingOnThisArea{{typezone.0}}" name="CanYouParkingOnThisArea">Парковка разрешена
           </div>
           <div style="float: left; width: 70%;">
-            <p> {{form.CanYouScooterOnThisArea}} Поездка разрешена</p>
+            <input type="checkbox" id="CanYouScooterOnThisArea{{typezone.0}}" name="CanYouScooterOnThisArea">Поездка разрешена
           </div>
 
           <div>
@@ -88,49 +88,141 @@ body {font-family: "Lato", sans-serif;}
   </div>
 
   <div id="{{typezone.1}}" class="tabcontent">
-    <h3>{{typezone.1}}</h3>
-    <p>Paris is the capital of France.</p>
-    <p>Paris is the capital of France.</p>
-    <p>Paris is the capital of France.</p>
-    <p>Paris is the capital of France.</p>
-    <p>Paris is the capital of France.</p>
-    <p>Paris is the capital of France.</p>
-    <p>Paris is the capital of France.</p>
-    <p>Paris is the capital of France.</p>
+      <div>
+        <form name="ZoneredactorForm" method="post">
+          {% csrf_token %}
+          <div style="float: left width: 100%;">
+            <input id="{{typezone.1}}" type="text" name="TypeZone" readonly  value="{{typezone.1}}" style="border: none;font-size: 21pt;background-color:#f4f6f9">
+          <hr />
+          </div>
+          <div style="float: left; width: 30%;">
+            <input type="checkbox" id="CanYouParkingOnThisArea{{typezone.1}}" name="CanYouParkingOnThisArea">Парковка разрешена
+          </div>
+          <div style="float: left; width: 70%;">
+            <input type="checkbox" id="CanYouScooterOnThisArea{{typezone.1}}" name="CanYouScooterOnThisArea">Поездка разрешена
+          </div>
 
+          <div>
+            Описание:<br>
+            <input type="text" style=" width: 100%;">
+          </div>
+          Цвет:
+          <p><input id="id_hex_color" maxlength="7" name="hex_color" type="color" value="#7E7593" >{{form.ColorZone}}</p>
 
+          <p><input type="submit" value="Сохранить изменения"></p>
+            <span>{{error}}</span>
+        </form>
+      </div>
   </div>
 
   <div id="{{typezone.2}}" class="tabcontent">
-    <h3>{{typezone.2}}</h3>
-    <p>Tokyo is the capital of Japan.</p>
+      <div>
+        <form name="ZoneredactorForm" method="post">
+          {% csrf_token %}
+          <div style="float: left width: 100%;">
+            <input id="{{typezone.2}}" type="text" name="TypeZone" readonly  value="{{typezone.2}}" style="border: none;font-size: 21pt;background-color:#f4f6f9">
+          <hr />
+          </div>
+          <div style="float: left; width: 30%;">
+            <input type="checkbox" id="CanYouParkingOnThisArea{{typezone.2}}" name="CanYouParkingOnThisArea">Парковка разрешена
+          </div>
+          <div style="float: left; width: 70%;">
+            <input type="checkbox" id="CanYouScooterOnThisArea{{typezone.2}}" name="CanYouScooterOnThisArea">Поездка разрешена
+          </div>
+
+          <div>
+            Описание:<br>
+            <input type="text" style=" width: 100%;">
+          </div>
+          Цвет:
+          <p><input id="id_hex_color" maxlength="7" name="hex_color" type="color" value="#7E7593" >{{form.ColorZone}}</p>
+
+          <p><input type="submit" value="Сохранить изменения"></p>
+            <span>{{error}}</span>
+        </form>
+      </div>
   </div>
 
   <div id="{{typezone.3}}" class="tabcontent">
-    <h3>{{typezone.3}}</h3>
-    <p>Oslo is the capital of Norway.</p>
-  </div>
+      <div>
+        <form name="ZoneredactorForm" method="post">
+          {% csrf_token %}
+          <div style="float: left width: 100%;">
+            <input id="{{typezone.3}}" type="text" name="TypeZone" readonly  value="{{typezone.3}}" style="border: none;font-size: 21pt;background-color:#f4f6f9">
+          <hr />
+          </div>
+          <div style="float: left; width: 30%;">
+            <input type="checkbox" id="CanYouParkingOnThisArea{{typezone.3}}" name="CanYouParkingOnThisArea">Парковка разрешена
+          </div>
+          <div style="float: left; width: 70%;">
+            <input type="checkbox" id="CanYouScooterOnThisArea{{typezone.3}}" name="CanYouScooterOnThisArea">Поездка разрешена
+          </div>
 
+          <div>
+            Описание:<br>
+            <input type="text" style=" width: 100%;">
+          </div>
+          Цвет:
+          <p><input id="id_hex_color" maxlength="7" name="hex_color" type="color" value="#7E7593" >{{form.ColorZone}}</p>
+
+          <p><input type="submit" value="Сохранить изменения"></p>
+            <span>{{error}}</span>
+        </form>
+      </div>
+  </div>
   <div id="{{typezone.4}}" class="tabcontent">
-    <h3>{{typezone.4}}</h3>
-    <p>Oslo1 is the capital of Norway.</p>
-  </div>
+      <div>
+        <form name="ZoneredactorForm" method="post">
+          {% csrf_token %}
+          <div style="float: left width: 100%;">
+            <input id="{{typezone.4}}" type="text" name="TypeZone" readonly  value="{{typezone.4}}" style="border: none;font-size: 21pt;background-color:#f4f6f9">
+          <hr />
+          </div>
+          <div style="float: left; width: 30%;">
+            <input type="checkbox" id="CanYouParkingOnThisArea{{typezone.4}}" name="CanYouParkingOnThisArea">Парковка разрешена
+          </div>
+          <div style="float: left; width: 70%;">
+            <input type="checkbox" id="CanYouScooterOnThisArea{{typezone.4}}" name="CanYouScooterOnThisArea">Поездка разрешена
+          </div>
 
+          <div>
+            Описание:<br>
+            <input type="text" style=" width: 100%;">
+          </div>
+          Цвет:
+          <p><input id="id_hex_color" maxlength="7" name="hex_color" type="color" value="#7E7593" >{{form.ColorZone}}</p>
+
+          <p><input type="submit" value="Сохранить изменения"></p>
+            <span>{{error}}</span>
+        </form>
+      </div>
+  </div>
 </div>
 <script>
 window.addEventListener("load", startup, false);
 
-var massiv  = {{massiv|safe}}
-CanYouParkingOnThisArea = massiv['Поездки запрещены']
 
-if (CanYouParkingOnThisArea[1] ==true){
-CheckParking= document.getElementById('id_CanYouParkingOnThisArea')
-CheckParking.checked = "checked"
+var massiv  = {{massiv|safe}}
+namesTypeOfZone = Object.keys(massiv);
+console.log(namesTypeOfZone.length)
+for (i in namesTypeOfZone){
+  CanYouParkingOnThisArea = massiv[namesTypeOfZone[i]]
+<!--  console.log(namesTypeOfZone[i])-->
+  if (CanYouParkingOnThisArea[1] ==true){
+    console.log(namesTypeOfZone[i])
+    id = 'CanYouParkingOnThisArea'+namesTypeOfZone[i]
+    console.log(id)
+    CheckParking= document.getElementById(id)
+    CheckParking.checked = "checked"
+  }
+  if (CanYouParkingOnThisArea[2] ==true){
+    id = 'CanYouScooterOnThisArea'+namesTypeOfZone[i]
+    CheckScooter= document.getElementById(id)
+    CheckScooter.checked = "checked"
+  }
+  i=i+1
 }
-if (CanYouParkingOnThisArea[2] ==true){
-CheckScooter= document.getElementById('id_CanYouScooterOnThisArea')
-CheckScooter.checked = "checked"
-}
+
 
 function watchColorPicker(event) {
 document.getElementById('id_ColorZone').value=document.getElementById('id_hex_color').value
