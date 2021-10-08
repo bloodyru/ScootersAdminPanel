@@ -9,6 +9,7 @@ from django.views.generic import DetailView
 from .forms import UserForm, ZoneredactorForm, NewZoneForm,TypeOfZoneForm
 from django.views.generic.edit import UpdateView, CreateView
 import json
+from django.db.models import F
 
 
 def index(request):
@@ -143,7 +144,14 @@ def typeofzone(request):
         datacolor.append(color0)
 
     name = "Типы зон"
+    massiv1 = TypeOfZone.objects.all().values_list('TypeZone','CanYouParkingOnThisArea','CanYouScooterOnThisArea') # создаем массив с именами зон и состоянием можноли там парковаться и ездить
+    massiv ={} # объявляем словарь
+    lengthMassiv = 0  # переменная для последующего перебора длинны массива
+    for i in massiv1: # присваиваем i поочереди каждое значение массива
+        massiv[i[0]] = i # добавляем в словарь ключ с нулевым значением i и присваиваем ему всю i
+        lengthMassiv=lengthMassiv+1 # увеличиваем переменную на 1
+    massiv = json.dumps(massiv) # говорим что словарь теперь json
     typezone = TypeOfZone.objects.all()
     form = TypeOfZoneForm(request.POST, initial={'TypeZone': typezone[0]})
     return render(request, 'adm/typeofzone.html', {'name': name, 'typezone': typezone, 'datacolor':datacolor,
-                                                   'form':form, 'error': error})
+                                                   'form':form, 'error': error, 'massiv':massiv})

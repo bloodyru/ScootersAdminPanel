@@ -68,11 +68,12 @@ body {font-family: "Lato", sans-serif;}
           <hr />
           </div>
           <div style="float: left; width: 30%;">
-            <p> {{form.CanYouScooterOnThisArea}} Поездка разрешена</p>
-          </div>
-          <div style="float: left; width: 70%;">
             <p>{{form.CanYouParkingOnThisArea}} Парковка разрешена</p>
           </div>
+          <div style="float: left; width: 70%;">
+            <p> {{form.CanYouScooterOnThisArea}} Поездка разрешена</p>
+          </div>
+
           <div>
             Описание:<br>
             <input type="text" style=" width: 100%;">
@@ -116,14 +117,24 @@ body {font-family: "Lato", sans-serif;}
   </div>
 
 </div>
-
 <script>
 window.addEventListener("load", startup, false);
+
+var massiv  = {{massiv|safe}}
+CanYouParkingOnThisArea = massiv['Поездки запрещены']
+
+if (CanYouParkingOnThisArea[1] ==true){
+CheckParking= document.getElementById('id_CanYouParkingOnThisArea')
+CheckParking.checked = "checked"
+}
+if (CanYouParkingOnThisArea[2] ==true){
+CheckScooter= document.getElementById('id_CanYouScooterOnThisArea')
+CheckScooter.checked = "checked"
+}
 
 function watchColorPicker(event) {
 document.getElementById('id_ColorZone').value=document.getElementById('id_hex_color').value
 }
-
 function startup() {
   colorWell = document.querySelector("#id_hex_color");
   colorWell.addEventListener("input", watchColorPicker, false);
@@ -131,9 +142,7 @@ function startup() {
   colorWell.select();
   document.getElementById('id_hex_color').value='{{datacolor.0}}'
   document.getElementById('id_ColorZone').value='{{datacolor.0}}'
-
 }
-
 
 var ColorTypeOfzone = {{datacolor|safe}}
 
