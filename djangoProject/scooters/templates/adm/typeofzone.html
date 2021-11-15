@@ -79,7 +79,7 @@ body {font-family: "Lato", sans-serif;}
             <input type="text" style=" width: 100%;">
           </div>
           Цвет:
-          <p><input id="id_hex_color" maxlength="7" name="hex_color" type="color" value="#7E7593" >{{form.ColorZone}}</p>
+          <p><input id="{{typezone.0}}id_hex_color" maxlength="7" name="hex_color" type="color" value="#7E7593" >{{form.ColorZone}}</p>
 
           <p><input type="submit" value="Сохранить изменения"></p>
             <span>{{error}}</span>
@@ -201,17 +201,20 @@ body {font-family: "Lato", sans-serif;}
 <script>
 window.addEventListener("load", startup, false);
 
-
 var massiv  = {{massiv|safe}}
+<!--console.log (massiv)-->
+
 namesTypeOfZone = Object.keys(massiv);
-console.log(namesTypeOfZone.length)
+
+<!--console.log(namesTypeOfZone.length)-->
+
 for (i in namesTypeOfZone){
   CanYouParkingOnThisArea = massiv[namesTypeOfZone[i]]
 <!--  console.log(namesTypeOfZone[i])-->
   if (CanYouParkingOnThisArea[1] ==true){
-    console.log(namesTypeOfZone[i])
+<!--    console.log(namesTypeOfZone[i])-->
     id = 'CanYouParkingOnThisArea'+namesTypeOfZone[i]
-    console.log(id)
+<!--    console.log(id)-->
     CheckParking= document.getElementById(id)
     CheckParking.checked = "checked"
   }
@@ -227,12 +230,20 @@ for (i in namesTypeOfZone){
 function watchColorPicker(event) {
 document.getElementById('id_ColorZone').value=document.getElementById('id_hex_color').value
 }
+
 function startup() {
   colorWell = document.querySelector("#id_hex_color");
   colorWell.addEventListener("input", watchColorPicker, false);
   colorWell.addEventListener("change", watchColorPicker, false);
   colorWell.select();
-  document.getElementById('id_hex_color').value='{{datacolor.0}}'
+  var jsonObject = JSON.parse('{{ data | escapejs }}');
+  console.log(jsonObject.length)
+  console.log(jsonObject[0].fields.TypeZone)
+<!--  var typezone  = {{typezone|safe}}-->
+<!--  for (i in typezone){-->
+<!--  console.log('i')-->
+<!--  }-->
+  document.getElementById('{{typezone.0}}id_hex_color').value='{{datacolor.2}}'
   document.getElementById('id_ColorZone').value='{{datacolor.0}}'
 }
 

@@ -154,6 +154,8 @@ def typeofzone(request):
     massiv = json.dumps(massiv) # говорим что словарь теперь json
     # typezone = TypeOfZone.objects.all().values('TypeZone')
     typezone = TypeOfZone.objects.all()
+    data = serializers.serialize("json", TypeOfZone.objects.all())
+    print (data)
     form = TypeOfZoneForm(request.POST, initial={'TypeZone': typezone[0]})
-    return render(request, 'adm/typeofzone.html', {'name': name, 'typezone': typezone, 'datacolor':datacolor,
+    return render(request, 'adm/typeofzone.html', {'data': data, 'name': name, 'typezone': typezone, 'datacolor':datacolor,
                                                    'form':form, 'error': error, 'massiv':massiv})
