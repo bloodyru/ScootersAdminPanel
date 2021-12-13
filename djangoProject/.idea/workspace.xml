@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b4e6311a-a30b-4a08-ba1b-91df69e97ae2" name="Default Changelist" comment=" во всех типах зон кроме первой не работет изменение цвета">
+    <list default="true" id="b4e6311a-a30b-4a08-ba1b-91df69e97ae2" name="Default Changelist" comment=" во всех типах зон кроме первой не работет изменение цвета+передал json в шаблон и js принял">
+      <change afterPath="$PROJECT_DIR$/scooters/static/adm/dist/js/typeofzone.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scooters/adm/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/scooters/adm/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scooters/adm/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/scooters/adm/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scooters/adm/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/scooters/adm/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scooters/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/scooters/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scooters/templates/adm/typeofzone.html" beforeDir="false" afterPath="$PROJECT_DIR$/scooters/templates/adm/typeofzone.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scooters/templates/adm/zoneredactor.html" beforeDir="false" afterPath="$PROJECT_DIR$/scooters/templates/adm/zoneredactor.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,11 +54,12 @@
       <recent name="D:\PycharmProjects\djangoProject\scooters\templates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\ScootersAdminPanel\djangoProject\scooters\static\adm\dist\js" />
       <recent name="D:\PycharmProjects\djangoProject\scooters\static\adm" />
       <recent name="D:\PycharmProjects\djangoProject\scooters\templates\adm" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.views">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="djangoProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -76,6 +81,32 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="views" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="djangoProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scooters/adm" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scooters/adm/views.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.views" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -114,8 +145,29 @@
       <option name="project" value="LOCAL" />
       <updated>1633686783243</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary=" во всех типах зон кроме первой не работет изменение цвета+передал json в шаблон и js принял">
+      <created>1636972062194</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1636972062194</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.js" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -134,7 +186,8 @@
     <MESSAGE value="первый тип зоны, всё раотает кроме CheckboxInput" />
     <MESSAGE value="первый тип зоны работает" />
     <MESSAGE value=" во всех типах зон кроме первой не работет изменение цвета" />
-    <option name="LAST_COMMIT_MESSAGE" value=" во всех типах зон кроме первой не работет изменение цвета" />
+    <MESSAGE value=" во всех типах зон кроме первой не работет изменение цвета+передал json в шаблон и js принял" />
+    <option name="LAST_COMMIT_MESSAGE" value=" во всех типах зон кроме первой не работет изменение цвета+передал json в шаблон и js принял" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -146,7 +199,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/scooters/adm/models.py</url>
-          <line>53</line>
+          <line>55</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

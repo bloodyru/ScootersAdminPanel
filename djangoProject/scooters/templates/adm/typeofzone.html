@@ -59,212 +59,44 @@ body {font-family: "Lato", sans-serif;}
 <button class="tablink" onclick="openZone('{{el.TypeZone}}', this, '{{el.ColorZone}}')" id="defaultOpen">{{el.TypeZone}}</button>
 {% endfor%}
 </div>
-  <div id="{{typezone.0}}" class="tabcontent">
+  {% for el in typezone %}
+  <div id="{{el.TypeZone}}" class="tabcontent">
       <div>
-        <form name="ZoneredactorForm" method="post">
+        <form name="TypeOfZoneForm" method="post">
           {% csrf_token %}
           <div style="float: left width: 100%;">
-            <input id="{{typezone.0}}" type="text" name="TypeZone" readonly  value="{{typezone.0}}" style="border: none;font-size: 21pt;background-color:#f4f6f9">
+            <input id="{{el.TypeZone}}name" type="text" name="TypeZone" readonly  value="{{el.TypeZone}}" style="border: none;font-size: 21pt;background-color:#f4f6f9">
           <hr />
           </div>
           <div style="float: left; width: 30%;">
-            <input type="checkbox" id="CanYouParkingOnThisArea{{typezone.0}}" name="CanYouParkingOnThisArea">Парковка разрешена
+            <input type="checkbox" id="CanYouParkingOnThisArea{{el.TypeZone}}" name="CanYouParkingOnThisArea">Парковка разрешена
           </div>
           <div style="float: left; width: 70%;">
-            <input type="checkbox" id="CanYouScooterOnThisArea{{typezone.0}}" name="CanYouScooterOnThisArea">Поездка разрешена
+            <input type="checkbox" id="CanYouScooterOnThisArea{{el.TypeZone}}" name="CanYouScooterOnThisArea">Поездка разрешена
           </div>
-
+          <div>
+            Максимальная скорость:<br>
+            <input type="text" id="{{el.TypeZone}}MaxSpeed" name="MaxSpeed" style=" width: 100%;">
+          </div>
           <div>
             Описание:<br>
-            <input type="text" style=" width: 100%;">
+            <input type="text" id="{{el.TypeZone}}Description" name="Description" style=" width: 100%;">
           </div>
           Цвет:
-          <p><input id="{{typezone.0}}id_hex_color" maxlength="7" name="hex_color" type="color" value="#7E7593" >{{form.ColorZone}}</p>
-
+          <p><input id="{{el.TypeZone}}id_hex_color" maxlength="7" name="hex_color" type="color" value="#7E7593" ></p>
+          <p><input id="{{el.TypeZone}}id_ColorZone" maxlength="7" name="ColorZone" type="text" value="#7E7593" >
           <p><input type="submit" value="Сохранить изменения"></p>
             <span>{{error}}</span>
         </form>
       </div>
+
   </div>
-
-  <div id="{{typezone.1}}" class="tabcontent">
-      <div>
-        <form name="ZoneredactorForm" method="post">
-          {% csrf_token %}
-          <div style="float: left width: 100%;">
-            <input id="{{typezone.1}}" type="text" name="TypeZone" readonly  value="{{typezone.1}}" style="border: none;font-size: 21pt;background-color:#f4f6f9">
-          <hr />
-          </div>
-          <div style="float: left; width: 30%;">
-            <input type="checkbox" id="CanYouParkingOnThisArea{{typezone.1}}" name="CanYouParkingOnThisArea">Парковка разрешена
-          </div>
-          <div style="float: left; width: 70%;">
-            <input type="checkbox" id="CanYouScooterOnThisArea{{typezone.1}}" name="CanYouScooterOnThisArea">Поездка разрешена
-          </div>
-
-          <div>
-            Описание:<br>
-            <input type="text" style=" width: 100%;">
-          </div>
-          Цвет:
-          <p><input id="id_hex_color" maxlength="7" name="hex_color" type="color" value="#7E7593" >{{form.ColorZone}}</p>
-
-          <p><input type="submit" value="Сохранить изменения"></p>
-            <span>{{error}}</span>
-        </form>
-      </div>
-  </div>
-
-  <div id="{{typezone.2}}" class="tabcontent">
-      <div>
-        <form name="ZoneredactorForm" method="post">
-          {% csrf_token %}
-          <div style="float: left width: 100%;">
-            <input id="{{typezone.2}}" type="text" name="TypeZone" readonly  value="{{typezone.2}}" style="border: none;font-size: 21pt;background-color:#f4f6f9">
-          <hr />
-          </div>
-          <div style="float: left; width: 30%;">
-            <input type="checkbox" id="CanYouParkingOnThisArea{{typezone.2}}" name="CanYouParkingOnThisArea">Парковка разрешена
-          </div>
-          <div style="float: left; width: 70%;">
-            <input type="checkbox" id="CanYouScooterOnThisArea{{typezone.2}}" name="CanYouScooterOnThisArea">Поездка разрешена
-          </div>
-
-          <div>
-            Описание:<br>
-            <input type="text" style=" width: 100%;">
-          </div>
-          Цвет:
-          <p><input id="id_hex_color" maxlength="7" name="hex_color" type="color" value="#7E7593" >{{form.ColorZone}}</p>
-
-          <p><input type="submit" value="Сохранить изменения"></p>
-            <span>{{error}}</span>
-        </form>
-      </div>
-  </div>
-
-  <div id="{{typezone.3}}" class="tabcontent">
-      <div>
-        <form name="ZoneredactorForm" method="post">
-          {% csrf_token %}
-          <div style="float: left width: 100%;">
-            <input id="{{typezone.3}}" type="text" name="TypeZone" readonly  value="{{typezone.3}}" style="border: none;font-size: 21pt;background-color:#f4f6f9">
-          <hr />
-          </div>
-          <div style="float: left; width: 30%;">
-            <input type="checkbox" id="CanYouParkingOnThisArea{{typezone.3}}" name="CanYouParkingOnThisArea">Парковка разрешена
-          </div>
-          <div style="float: left; width: 70%;">
-            <input type="checkbox" id="CanYouScooterOnThisArea{{typezone.3}}" name="CanYouScooterOnThisArea">Поездка разрешена
-          </div>
-
-          <div>
-            Описание:<br>
-            <input type="text" style=" width: 100%;">
-          </div>
-          Цвет:
-          <p><input id="id_hex_color" maxlength="7" name="hex_color" type="color" value="#7E7593" >{{form.ColorZone}}</p>
-
-          <p><input type="submit" value="Сохранить изменения"></p>
-            <span>{{error}}</span>
-        </form>
-      </div>
-  </div>
-  <div id="{{typezone.4}}" class="tabcontent">
-      <div>
-        <form name="ZoneredactorForm" method="post">
-          {% csrf_token %}
-          <div style="float: left width: 100%;">
-            <input id="{{typezone.4}}" type="text" name="TypeZone" readonly  value="{{typezone.4}}" style="border: none;font-size: 21pt;background-color:#f4f6f9">
-          <hr />
-          </div>
-          <div style="float: left; width: 30%;">
-            <input type="checkbox" id="CanYouParkingOnThisArea{{typezone.4}}" name="CanYouParkingOnThisArea">Парковка разрешена
-          </div>
-          <div style="float: left; width: 70%;">
-            <input type="checkbox" id="CanYouScooterOnThisArea{{typezone.4}}" name="CanYouScooterOnThisArea">Поездка разрешена
-          </div>
-
-          <div>
-            Описание:<br>
-            <input type="text" style=" width: 100%;">
-          </div>
-          Цвет:
-          <p><input id="id_hex_color" maxlength="7" name="hex_color" type="color" value="#7E7593" >{{form.ColorZone}}</p>
-
-          <p><input type="submit" value="Сохранить изменения"></p>
-            <span>{{error}}</span>
-        </form>
-      </div>
-  </div>
+  {% endfor%}
+{{ massiv|json_script:"massiv" }}
+{{ TypeOfZoneObjectsAll|json_script:"TypeOfZoneObjectsAll" }}
+{{datacolor|json_script:"datacolor"}}
 </div>
-<script>
-window.addEventListener("load", startup, false);
-
-var massiv  = {{massiv|safe}}
-<!--console.log (massiv)-->
-
-namesTypeOfZone = Object.keys(massiv);
-
-<!--console.log(namesTypeOfZone.length)-->
-
-for (i in namesTypeOfZone){
-  CanYouParkingOnThisArea = massiv[namesTypeOfZone[i]]
-<!--  console.log(namesTypeOfZone[i])-->
-  if (CanYouParkingOnThisArea[1] ==true){
-<!--    console.log(namesTypeOfZone[i])-->
-    id = 'CanYouParkingOnThisArea'+namesTypeOfZone[i]
-<!--    console.log(id)-->
-    CheckParking= document.getElementById(id)
-    CheckParking.checked = "checked"
-  }
-  if (CanYouParkingOnThisArea[2] ==true){
-    id = 'CanYouScooterOnThisArea'+namesTypeOfZone[i]
-    CheckScooter= document.getElementById(id)
-    CheckScooter.checked = "checked"
-  }
-  i=i+1
-}
-
-
-function watchColorPicker(event) {
-document.getElementById('id_ColorZone').value=document.getElementById('id_hex_color').value
-}
-
-function startup() {
-  colorWell = document.querySelector("#id_hex_color");
-  colorWell.addEventListener("input", watchColorPicker, false);
-  colorWell.addEventListener("change", watchColorPicker, false);
-  colorWell.select();
-  var jsonObject = JSON.parse('{{ data | escapejs }}');
-  console.log(jsonObject.length)
-  console.log(jsonObject[0].fields.TypeZone)
-<!--  var typezone  = {{typezone|safe}}-->
-<!--  for (i in typezone){-->
-<!--  console.log('i')-->
-<!--  }-->
-  document.getElementById('{{typezone.0}}id_hex_color').value='{{datacolor.2}}'
-  document.getElementById('id_ColorZone').value='{{datacolor.0}}'
-}
-
-var ColorTypeOfzone = {{datacolor|safe}}
-
-function openZone(cityName,elmnt,color) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablink");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].style.backgroundColor = "";
-    }
-    document.getElementById(cityName).style.display = "block";
-    elmnt.style.backgroundColor = color;
-
-}
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
+<script src="{% static 'adm/dist/js/typeofzone.js' %}">
 </script>
 {% endblock %}
 

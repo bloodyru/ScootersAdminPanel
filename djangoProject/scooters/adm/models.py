@@ -51,6 +51,8 @@ class TypeOfZone(models.Model):
     ColorZone = models.CharField(max_length=7, null=True)
     CanYouScooterOnThisArea = models.BooleanField(null=True)
     CanYouParkingOnThisArea = models.BooleanField(null=True)
+    MaxSpeed = models.IntegerField(null=True, max_length=3)
+    Description = models.CharField(max_length=50, null=True)
     def __str__(self):
         return str(self.TypeZone)
 

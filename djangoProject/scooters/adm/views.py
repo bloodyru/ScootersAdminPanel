@@ -131,6 +131,8 @@ def typeofzone(request):
             TypeOfZoneObject.ColorZone = form.cleaned_data.get('ColorZone') # значению .ColorZone модели TypeOfZoneObject, присваиваем значение со страницы
             TypeOfZoneObject.CanYouScooterOnThisArea = form.cleaned_data.get('CanYouScooterOnThisArea')
             TypeOfZoneObject.CanYouParkingOnThisArea = form.cleaned_data.get('CanYouParkingOnThisArea')
+            TypeOfZoneObject.MaxSpeed = form.cleaned_data.get('MaxSpeed')
+            TypeOfZoneObject.Description = form.cleaned_data.get('Description')
             TypeOfZoneObject.save() # сохраняем модель
         else:
             error = form.errors # если форма заполнена не правильно отправляем ошибки на страницу
@@ -144,18 +146,23 @@ def typeofzone(request):
         datacolor.append(color0)
 
     name = "Типы зон"
-    massiv1 = TypeOfZone.objects.all().values_list('TypeZone','CanYouParkingOnThisArea','CanYouScooterOnThisArea') # создаем массив с именами зон и состоянием можноли там парковаться и ездить
+    # massiv1 = TypeOfZone.objects.all().values_list('TypeZone','CanYouParkingOnThisArea','CanYouScooterOnThisArea') # создаем массив с именами зон и состоянием можноли там парковаться и ездить
+
+    massiv1 = TypeOfZone.objects.all().values_list() # создаем массив с именами зон и состоянием можноли там парковаться и ездить
+    print(type(massiv1))
     massiv ={} # объявляем словарь
     lengthMassiv = 0  # переменная для последующего перебора длинны массива
-    for i in massiv1: # присваиваем i поочереди каждое значение массива
-        massiv[i[0]] = i # добавляем в словарь ключ с нулевым значением i и присваиваем ему всю i
+    for i in massiv1: # присваиваем i поочереди каждое значение массива с именами зон и состоянием можноли там парковаться и ездить
+        massiv[lengthMassiv] = i # добавляем в словарь ключ с нулевым значением i и присваиваем ему всю i
         lengthMassiv=lengthMassiv+1 # увеличиваем переменную на 1
     # massiv = serializers.serialize("json", massiv1)
-    massiv = json.dumps(massiv) # говорим что словарь теперь json
+    print(massiv[0])
+    # massiv = json.dumps(massiv) # говорим что словарь с именами зон и состоянием можноли там парковаться и ездить - теперь json
     # typezone = TypeOfZone.objects.all().values('TypeZone')
     typezone = TypeOfZone.objects.all()
-    data = serializers.serialize("json", TypeOfZone.objects.all())
-    print (data)
+    TypeOfZoneObjectsAll = serializers.serialize("json", TypeOfZone.objects.all())
+    # TypeOfZoneObjectsAll = TypeOfZone.objects.all()
+    # print(TypeOfZoneObjectsAll)
     form = TypeOfZoneForm(request.POST, initial={'TypeZone': typezone[0]})
-    return render(request, 'adm/typeofzone.html', {'data': data, 'name': name, 'typezone': typezone, 'datacolor':datacolor,
-                                                   'form':form, 'error': error, 'massiv':massiv})
+    return render(request, 'adm/typeofzone.html', {'TypeOfZoneObjectsAll': TypeOfZoneObjectsAll, 'name': name, 'typezone': typezone, 'datacolor':datacolor,
+                                                   'form':form, 'error': error, 'massiv':massiv,'massiv1':massiv1})

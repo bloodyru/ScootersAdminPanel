@@ -71,7 +71,7 @@ class TypeOfZoneForm(ModelForm):
     class Meta:
         # status = UserProfile._meta.get_field('CanYouScooterOnThisArea').formfield(empty_label=u'Не указан', required=False)
         model = TypeOfZone
-        fields = ['TypeZone', 'ColorZone', 'CanYouScooterOnThisArea', 'CanYouParkingOnThisArea']
+        fields = ['TypeZone', 'ColorZone', 'CanYouScooterOnThisArea', 'CanYouParkingOnThisArea', 'MaxSpeed', 'Description']
         widgets = {
             "TypeZone": TextInput(attrs={
                 'class': 'form-control',
@@ -80,11 +80,15 @@ class TypeOfZoneForm(ModelForm):
             "ColorZone": TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Цвет зоны',
-                'style': 'width: 15%'
+                'style': 'width: 15%; margin-left:10'
             }),
             "CanYouScooterOnThisArea": CheckboxInput(attrs={
             } ),
             "CanYouParkingOnThisArea": CheckboxInput(attrs={
+            }),
+            "MaxSpeed": TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Максимальная скорость'
             }),
 
         }
