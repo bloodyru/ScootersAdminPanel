@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b4e6311a-a30b-4a08-ba1b-91df69e97ae2" name="Default Changelist" comment=" во всех типах зон все работает">
+    <list default="true" id="b4e6311a-a30b-4a08-ba1b-91df69e97ae2" name="Default Changelist" comment=" во всех типах зон все работает код почищен">
+      <change afterPath="$PROJECT_DIR$/scooters/templates/adm/promocodes.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scooters/adm/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/scooters/adm/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scooters/adm/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/scooters/adm/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scooters/adm/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/scooters/adm/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scooters/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/scooters/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scooters/static/adm/dist/js/typeofzone.js" beforeDir="false" afterPath="$PROJECT_DIR$/scooters/static/adm/dist/js/typeofzone.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scooters/templates/adm/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/scooters/templates/adm/sidebar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scooters/templates/adm/typeofzone.html" beforeDir="false" afterPath="$PROJECT_DIR$/scooters/templates/adm/typeofzone.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -156,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639365356168</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary=" во всех типах зон все работает код почищен">
+      <created>1639365986591</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1639365986591</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -192,7 +203,8 @@
     <MESSAGE value=" во всех типах зон кроме первой не работет изменение цвета" />
     <MESSAGE value=" во всех типах зон кроме первой не работет изменение цвета+передал json в шаблон и js принял" />
     <MESSAGE value=" во всех типах зон все работает" />
-    <option name="LAST_COMMIT_MESSAGE" value=" во всех типах зон все работает" />
+    <MESSAGE value=" во всех типах зон все работает код почищен" />
+    <option name="LAST_COMMIT_MESSAGE" value=" во всех типах зон все работает код почищен" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

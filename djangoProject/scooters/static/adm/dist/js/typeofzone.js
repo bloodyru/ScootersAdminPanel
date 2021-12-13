@@ -2,7 +2,7 @@
 window.addEventListener("load", startup, false);
 //массив с именами  типов зон и и их содержимым
 var NamesTypeOfZoneAndParkingAndRide  = JSON.parse(document.getElementById('massiv').textContent);
-
+//проставляем галочки согласно данных из базы можно ездить/парковаться или нельзя в данной зоне
 for (i in NamesTypeOfZoneAndParkingAndRide){
   CanYouParkingOnThisArea = NamesTypeOfZoneAndParkingAndRide[i][4]
   if (CanYouParkingOnThisArea ==true){
@@ -16,13 +16,13 @@ for (i in NamesTypeOfZoneAndParkingAndRide){
   i=i+1
 }
 
-
+//функция проставляет выбранный цвет в текствое поле
 function watchColorPicker(event) {
   for (i in NamesTypeOfZoneAndParkingAndRide) {
   document.getElementById(NamesTypeOfZoneAndParkingAndRide[i][1]+'id_ColorZone').value=document.getElementById(NamesTypeOfZoneAndParkingAndRide[i][1]+'id_hex_color').value
   }
 }
-
+//функция выполняемая при загрузке страницы
 function startup() {
 
   for (i in NamesTypeOfZoneAndParkingAndRide) {
@@ -36,7 +36,7 @@ function startup() {
     colorWell.select();
   }
 }
-
+//функция переключения вкладок
 function openZone(ZoneName,elmnt,color) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");

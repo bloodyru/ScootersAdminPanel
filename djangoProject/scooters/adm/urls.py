@@ -14,5 +14,6 @@ urlpatterns = [
     path('zonenew.html', views.Newzone.as_view(), name='zonenew'),
     path('delete/<int:pk>', views.deletezone, name='deletezone'),
     path('typeofzone.html', views.typeofzone, name='typeofzone'),
+    path('promocodes.html', views.promocodes, name='promocodes'),
 
 ]

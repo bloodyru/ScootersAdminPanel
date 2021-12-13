@@ -4,7 +4,7 @@ from django.core.management.commands import dumpdata
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.http import HttpResponseNotFound
-from .models import Transport, User, Balance, Zone, TypeOfZone
+from .models import Transport, User, Balance, Zone, TypeOfZone, PromoCodes
 from django.views.generic import DetailView
 from .forms import UserForm, ZoneredactorForm, NewZoneForm,TypeOfZoneForm
 from django.views.generic.edit import UpdateView, CreateView
@@ -137,14 +137,16 @@ def typeofzone(request):
         else:
             error = form.errors # если форма заполнена не правильно отправляем ошибки на страницу
     name = "Типы зон"
-
     massiv1 = TypeOfZone.objects.all().values_list() # создаем массив с именами зон и состоянием можноли там парковаться и ездить
-    print(type(massiv1))
     massiv ={} # объявляем словарь
     lengthMassiv = 0  # переменная для последующего перебора длинны массива
     for i in massiv1: # присваиваем i поочереди каждое значение массива с именами зон и состоянием можноли там парковаться и ездить
         massiv[lengthMassiv] = i # добавляем в словарь ключ с нулевым значением i и присваиваем ему всю i
         lengthMassiv=lengthMassiv+1 # увеличиваем переменную на 1
-    print(massiv[0])
     typezone = TypeOfZone.objects.all()
-    return render(request, 'adm/typeofzone.html', {'name': name, 'typezone': typezone,'error': error, 'massiv':massiv})
+    return render(request, 'adm/typeofzone.html', {'name': name, 'typezone': typezone,'error': error, 'massiv': massiv})
+
+def promocodes(request):
+    Promocodes = PromoCodes.objects.all()
+    name = "Промокоды"
+    return render(request, 'adm/promocodes.html', {'name': name, 'Promocodes': Promocodes})
