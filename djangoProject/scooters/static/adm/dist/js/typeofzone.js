@@ -1,17 +1,9 @@
 //добавляем прослушивание события загрузки станицы и запускаем функцию  startup
 window.addEventListener("load", startup, false);
-//массив с именами  типов зон и состоянием можноли там парковаться и ездить
+//массив с именами  типов зон и и их содержимым
 var NamesTypeOfZoneAndParkingAndRide  = JSON.parse(document.getElementById('massiv').textContent);
-console.log(NamesTypeOfZoneAndParkingAndRide)
-// json со всеми данными зон
-var TypeOfZoneObjectsAll = JSON.parse(document.getElementById('TypeOfZoneObjectsAll').textContent);
-
-namesTypeOfZone = Object.keys(NamesTypeOfZoneAndParkingAndRide);
-
-//console.log(namesTypeOfZone)
 
 for (i in NamesTypeOfZoneAndParkingAndRide){
-console.log(i)
   CanYouParkingOnThisArea = NamesTypeOfZoneAndParkingAndRide[i][4]
   if (CanYouParkingOnThisArea ==true){
     CheckParking= document.getElementById('CanYouParkingOnThisArea'+NamesTypeOfZoneAndParkingAndRide[i][1])
@@ -45,9 +37,7 @@ function startup() {
   }
 }
 
-var ColorTypeOfzone = JSON.parse(document.getElementById('datacolor').textContent)
-
-function openZone(cityName,elmnt,color) {
+function openZone(ZoneName,elmnt,color) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
@@ -57,7 +47,7 @@ function openZone(cityName,elmnt,color) {
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].style.backgroundColor = "";
     }
-    document.getElementById(cityName).style.display = "block";
+    document.getElementById(ZoneName).style.display = "block";
     elmnt.style.backgroundColor = color;
 
 }

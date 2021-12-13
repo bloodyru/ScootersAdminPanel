@@ -136,17 +136,7 @@ def typeofzone(request):
             TypeOfZoneObject.save() # сохраняем модель
         else:
             error = form.errors # если форма заполнена не правильно отправляем ошибки на страницу
-    ColorTypeOfzone = serializers.serialize('json', TypeOfZone.objects.all())
-    color = json.loads(ColorTypeOfzone)  # конвертируем json to array
-    datacolor = []
-    for i in range(len(color)):
-        color0 = color[i]  # берем первую строчку матрицы
-        color0 = color0['fields']  # берем параметр fields, углубляемся
-        color0 = color0['ColorZone']  # Берем параметр ColorZone, получаем строчку
-        datacolor.append(color0)
-
     name = "Типы зон"
-    # massiv1 = TypeOfZone.objects.all().values_list('TypeZone','CanYouParkingOnThisArea','CanYouScooterOnThisArea') # создаем массив с именами зон и состоянием можноли там парковаться и ездить
 
     massiv1 = TypeOfZone.objects.all().values_list() # создаем массив с именами зон и состоянием можноли там парковаться и ездить
     print(type(massiv1))
@@ -155,14 +145,6 @@ def typeofzone(request):
     for i in massiv1: # присваиваем i поочереди каждое значение массива с именами зон и состоянием можноли там парковаться и ездить
         massiv[lengthMassiv] = i # добавляем в словарь ключ с нулевым значением i и присваиваем ему всю i
         lengthMassiv=lengthMassiv+1 # увеличиваем переменную на 1
-    # massiv = serializers.serialize("json", massiv1)
     print(massiv[0])
-    # massiv = json.dumps(massiv) # говорим что словарь с именами зон и состоянием можноли там парковаться и ездить - теперь json
-    # typezone = TypeOfZone.objects.all().values('TypeZone')
     typezone = TypeOfZone.objects.all()
-    TypeOfZoneObjectsAll = serializers.serialize("json", TypeOfZone.objects.all())
-    # TypeOfZoneObjectsAll = TypeOfZone.objects.all()
-    # print(TypeOfZoneObjectsAll)
-    form = TypeOfZoneForm(request.POST, initial={'TypeZone': typezone[0]})
-    return render(request, 'adm/typeofzone.html', {'TypeOfZoneObjectsAll': TypeOfZoneObjectsAll, 'name': name, 'typezone': typezone, 'datacolor':datacolor,
-                                                   'form':form, 'error': error, 'massiv':massiv,'massiv1':massiv1})
+    return render(request, 'adm/typeofzone.html', {'name': name, 'typezone': typezone,'error': error, 'massiv':massiv})
