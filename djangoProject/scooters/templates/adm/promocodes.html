@@ -21,7 +21,90 @@
 {% endblock %}
 
 {% block main_content.html %}
+<style>
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0,0,0,0.8);
+    top:0;
+    right:0;
+    opacity:0;
+    visibility:hidden;
+    transition:all 0.8s ease 0s;
+
+}
+.popup:target{
+    opacity:1;
+    visibility:visible;
+}
+
+.popup:target .popup__content{
+    transform: translate(0px, 0px);
+    opacity:1;
+}
+.popup__area{
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    right:0;
+}
+.popup__body {
+    min-height: 100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:30px 10px;
+}
+.popup__content {
+    background-color:#fff;
+    color:#000;
+    max-width:30%;
+    max-height:80%;
+    right:0px;
+    padding:30px;
+    position:absolute;
+    opacity:0;
+    transition:all 0.8s ease 0s;
+    transform: translate(100%, 0%);
+    overflow-y:auto;
+    overflow-x:hidden;
+
+}
+
+.popup__title {
+    font-size:40px;
+    margin:0px 0px 1em 0px;
+}
+.popup__close {
+    position:absolute;
+    left:20px;
+    top:10px;
+    font-size:20px;
+    color:#000;
+    text-decoration:none;
+}
+
+</style>
+
 <div class="card-body">
+  <div class="info-box" style="min-height: 0px; padding: 0.1rem;">
+    <div class="info-box-content" >
+      <table>
+          <tr>
+              <td><font style="text-align: left;">{{summ}} - {{nn}}
+              </font></td>
+              <td style="text-align: right;">
+                  <a href="#popup">
+                  Добавить
+                  </a>
+              </td>
+          </tr>
+      </table>
+    </div>
+  </div>
+
   <table id="example1" class="table table-bordered table-striped">
     <thead>
       <tr>
@@ -50,6 +133,56 @@
         {% endfor%}
     </tbody>
   </table>
+  <div id="popup" class="popup">
+    <a href="#header" class="popup__area"></a>
+    <div class="popup__body">
+      <div class="popup__content">
+        <a href="#header" class="popup__close">X</a>
+        <div class="popup__title">
+          Заголовок
+        </div>
+<!--        <div class="popup__text">-->
+          Автоматическое заполнение ячеек листа даннымиhttps://support.microsoft.com › ru-ru › office › автома...
+Автоматическое заполнение ряда данных на вашем компьютере, таких как даты, числа, текст и формулы. Используйте функцию автозаполнеия, кнопку Параметры ...
+Не найдено: произвольного ‎| Запрос должен включать: произвольного
+
+Создание и изменение гиперссылок — Office - Microsoft ...https://support.microsoft.com › ru-ru › создание-и-изм...
+Кроме того, вы можете изменить адрес, отображаемый текст и начертание или цвет ... Если вы хотите удалить ссылки и отключить автоматическое добавление ...
+
+Как сделать, чтобы в текстовом поле заранее выводился ...http://htmlbook.ru › faq › kak-sdelat-chtoby-v-tekstovo...
+23 сент. 2010 г. — Вывести в однострочном и многострочном текстовом поле формы произвольный текст. Решение. Создание однострочного текстового поля осуществляется с ...
+
+Создание произвольного формата ячейки в Keynote на Machttps://support.apple.com › ru-ru › guide › mac
+В приложении Numbers на Mac можно создавать собственные форматы ячеек для
+          Автоматическое заполнение ячеек листа даннымиhttps://support.microsoft.com › ru-ru › office › автома...
+Автоматическое заполнение ряда данных на вашем компьютере, таких как даты, числа, текст и формулы. Используйте функцию автозаполнеия, кнопку Параметры ...
+Не найдено: произвольного ‎| Запрос должен включать: произвольного
+
+Создание и изменение гиперссылок — Office - Microsoft ...https://support.microsoft.com › ru-ru › создание-и-изм...
+Кроме того, вы можете изменить адрес, отображаемый текст и начертание или цвет ... Если вы хотите удалить ссылки и отключить автоматическое добавление ...
+
+Как сделать, чтобы в текстовом поле заранее выводился ...http://htmlbook.ru › faq › kak-sdelat-chtoby-v-tekstovo...
+23 сент. 2010 г. — Вывести в однострочном и многострочном текстовом поле формы произвольный текст. Решение. Создание однострочного текстового поля осуществляется с ...
+
+Создание произвольного формата ячейки в Keynote на Machttps://support.apple.com › ru-ru › guide › mac
+В приложении Numbers на Mac можно создавать собственные форматы ячеек для
+          Автоматическое заполнение ячеек листа даннымиhttps://support.microsoft.com › ru-ru › office › автома...
+Автоматическое заполнение ряда данных на вашем компьютере, таких как даты, числа, текст и формулы. Используйте функцию автозаполнеия, кнопку Параметры ...
+Не найдено: произвольного ‎| Запрос должен включать: произвольного
+
+Создание и изменение гиперссылок — Office - Microsoft ...https://support.microsoft.com › ru-ru › создание-и-изм...
+Кроме того, вы можете изменить адрес, отображаемый текст и начертание или цвет ... Если вы хотите удалить ссылки и отключить автоматическое добавление ...
+
+Как сделать, чтобы в текстовом поле заранее выводился ...http://htmlbook.ru › faq › kak-sdelat-chtoby-v-tekstovo...
+23 сент. 2010 г. — Вывести в однострочном и многострочном текстовом поле формы произвольный текст. Решение. Создание однострочного текстового поля осуществляется с ...
+
+Создание произвольного формата ячейки в Keynote на Machttps://support.apple.com › ru-ru › guide › mac
+В приложении Numbers на Mac можно создавать собственные форматы ячеек для
+<!--        </div>-->
+
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
 

@@ -84,9 +84,10 @@ def zone(request):
         datagps.append(gps0)
     summ = Zone.objects.count()
     n = summ % 10
-    if n <= 1:
+    if n == 0:
+        nn = 'зон'
+    elif n == 1:
         nn = 'зона'
-
     elif (n >= 2 and n <= 4):
         nn = 'зоны'
     elif (5 <= n <= 10):
@@ -149,4 +150,16 @@ def typeofzone(request):
 def promocodes(request):
     Promocodes = PromoCodes.objects.all()
     name = "Промокоды"
-    return render(request, 'adm/promocodes.html', {'name': name, 'Promocodes': Promocodes})
+    summ = PromoCodes.objects.count()
+    n = summ % 10
+    if n == 0:
+        nn = 'промокодов'
+    elif n == 1:
+        nn = 'промокод'
+    elif (n >= 2 and n <= 4):
+        nn = 'промокода'
+    elif (5 <= n <= 10):
+        nn = 'промокодов'
+    else:
+        nn = 'промокодов.'
+    return render(request, 'adm/promocodes.html', {'summ': summ, 'nn': nn,'name': name, 'Promocodes': Promocodes})
