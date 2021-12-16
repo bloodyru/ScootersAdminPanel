@@ -4,6 +4,7 @@ from django.core.management.commands import dumpdata
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.http import HttpResponseNotFound
+from django.http import HttpRequest
 from .models import Transport, User, Balance, Zone, TypeOfZone, PromoCodes
 from django.views.generic import DetailView
 from .forms import UserForm, ZoneredactorForm, NewZoneForm,TypeOfZoneForm
@@ -148,6 +149,9 @@ def typeofzone(request):
     return render(request, 'adm/typeofzone.html', {'name': name, 'typezone': typezone,'error': error, 'massiv': massiv})
 
 def promocodes(request):
+    if request.method == 'POST':
+        b = request.POST
+        print ('zapros',b.get('MaxSpeed'))
     Promocodes = PromoCodes.objects.all()
     name = "Промокоды"
     summ = PromoCodes.objects.count()
