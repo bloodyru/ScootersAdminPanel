@@ -174,19 +174,17 @@
   </div>
 </div>
 <script>
-    window.addEventListener("load", startup, false);
+window.addEventListener("load", startup, false);
 function startup() {
-    EventStartOfActive = document.getElementById("id_StartOfActive_datetime-local");
-    EventEndOfActive = document.getElementById("id_EndOfActive_datetime-local");
-    EventStartOfActive.addEventListener("change", functionEvent, false);
-    EventEndOfActive.addEventListener("change", functionEvent, false);
+    StartOfActiveDatetimeLocal = document.getElementById("id_StartOfActive_datetime-local");
+    EndOfActiveDatetimeLocal = document.getElementById("id_EndOfActive_datetime-local");
+    StartOfActiveDatetimeLocal.addEventListener("change", functionEvent, false);
+    EndOfActiveDatetimeLocal.addEventListener("change", functionEvent, false);
 }
 
 function functionEvent(event) {
-document.getElementById('id_StartOfActive').value=document.getElementById('id_StartOfActive_datetime-local').value
-console.log(document.getElementById('id_StartOfActive_datetime-local').value)
-document.getElementById('id_EndOfActive').value=document.getElementById('id_EndOfActive_datetime-local').value
-console.log("input")
+document.getElementById('id_StartOfActive').value=StartOfActiveDatetimeLocal.value
+document.getElementById('id_EndOfActive').value=EndOfActiveDatetimeLocal.value
 }
 
 </script>
