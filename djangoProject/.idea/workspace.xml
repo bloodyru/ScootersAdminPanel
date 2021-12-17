@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b4e6311a-a30b-4a08-ba1b-91df69e97ae2" name="Default Changelist" comment="в промокодах сделан правый popup нужно сделать форму в нем  с нормальным вывбором дат и времени">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scooters/adm/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/scooters/adm/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scooters/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/scooters/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scooters/templates/adm/promocodes.html" beforeDir="false" afterPath="$PROJECT_DIR$/scooters/templates/adm/promocodes.html" afterDir="false" />
-    </list>
+    <list default="true" id="b4e6311a-a30b-4a08-ba1b-91df69e97ae2" name="Default Changelist" comment="в промокода работает добавление промокода но форма добавления не очищается" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -204,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639702340208</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="в промокода работает добавление промокода но форма добавления не очищается">
+      <created>1639732935495</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1639732935495</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -246,7 +248,8 @@
     <MESSAGE value="в промокодах сделан правый popup для добавления туда формы" />
     <MESSAGE value="в промокодах сделан правый popup нужно сделать форму в нем" />
     <MESSAGE value="в промокодах сделан правый popup нужно сделать форму в нем  с нормальным вывбором дат и времени" />
-    <option name="LAST_COMMIT_MESSAGE" value="в промокодах сделан правый popup нужно сделать форму в нем  с нормальным вывбором дат и времени" />
+    <MESSAGE value="в промокода работает добавление промокода но форма добавления не очищается" />
+    <option name="LAST_COMMIT_MESSAGE" value="в промокода работает добавление промокода но форма добавления не очищается" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

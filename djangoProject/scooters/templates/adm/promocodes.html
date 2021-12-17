@@ -176,20 +176,10 @@
 <script>
     window.addEventListener("load", startup, false);
 function startup() {
-
-<!--  for (i in NamesTypeOfZoneAndParkingAndRide) {-->
-<!--    document.getElementById(NamesTypeOfZoneAndParkingAndRide[i][1]+'id_hex_color').value=NamesTypeOfZoneAndParkingAndRide[i][2]-->
-<!--    document.getElementById(NamesTypeOfZoneAndParkingAndRide[i][1]+'id_ColorZone').value=NamesTypeOfZoneAndParkingAndRide[i][2]-->
-<!--    document.getElementById(NamesTypeOfZoneAndParkingAndRide[i][1]+'MaxSpeed').value=NamesTypeOfZoneAndParkingAndRide[i][5]-->
-<!--    document.getElementById(NamesTypeOfZoneAndParkingAndRide[i][1]+'Description').value=NamesTypeOfZoneAndParkingAndRide[i][6]-->
     EventStartOfActive = document.getElementById("id_StartOfActive_datetime-local");
     EventEndOfActive = document.getElementById("id_EndOfActive_datetime-local");
     EventStartOfActive.addEventListener("change", functionEvent, false);
     EventEndOfActive.addEventListener("change", functionEvent, false);
-
-<!--    colorWell.select();-->
-console.log("ok")
-<!--  }-->
 }
 
 function functionEvent(event) {
@@ -197,10 +187,6 @@ document.getElementById('id_StartOfActive').value=document.getElementById('id_St
 console.log(document.getElementById('id_StartOfActive_datetime-local').value)
 document.getElementById('id_EndOfActive').value=document.getElementById('id_EndOfActive_datetime-local').value
 console.log("input")
-
-<!--  for (i in NamesTypeOfZoneAndParkingAndRide) {-->
-<!--  document.getElementById(NamesTypeOfZoneAndParkingAndRide[i][1]+'id_ColorZone').value=document.getElementById(NamesTypeOfZoneAndParkingAndRide[i][1]+'id_hex_color').value-->
-<!--  }-->
 }
 
 </script>
