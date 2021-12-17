@@ -153,7 +153,7 @@ def promocodes(request):
         form = AddPromocodeForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('adm/promocodes.html')
+
     else:
         form = AddPromocodeForm()
     Promocodes = PromoCodes.objects.all()

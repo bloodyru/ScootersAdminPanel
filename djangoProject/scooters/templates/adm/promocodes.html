@@ -23,6 +23,7 @@
 {% block main_content.html %}
 <style>
 .popup {
+    z-index: 4;
     position: fixed;
     width: 100%;
     height: 100%;
@@ -74,7 +75,7 @@
 }
 
 .popup__title {
-    font-size:40px;
+    font-size:25px;
     margin:0px 0px 1em 0px;
 }
 .popup__close {
@@ -139,37 +140,69 @@
       <div class="popup__content">
         <a href="#header" class="popup__close">X</a>
         <div class="popup__title">
-          Заголовок
+          Новый промокод:
         </div>
         <div class="popup__text">
-          <form method="post" action="{%url 'promocodes' %}">
+          <form method="post" action="{%url 'promocodes' %}" name="AddPromocodeForm">
             {% csrf_token %}
-            {{form}}
-<!--            <label>Введите название промокода:</label><br>-->
-<!--            <input type="text" id="NameOfPromoCode" name="NameOfPromoCode"> <br>-->
-<!--            <label>Выберите тип промокода</label><br>-->
-<!--            <input type="SelectMultiple" id="SelectMultiple" name="SelectMultiple"> <br>-->
-<!--             <label>Нарисуйте зону на карте</label>-->
-<!--            {{form.GPSPoints}} <br>-->
-<!--            <label>Выберите цвет зоны</label><br>-->
-<!--            {{form.ColorZone}} <br>-->
-<!--            <input id="id_hex_color" maxlength="7" name="hex_color" type="color"><br>-->
-<!--              <input type="datetime" >-->
+              <label>Введите название промокода:</label><br>
+              {{form.NameOfPromoCode}}<br>
+              <label>Выберите тип промокода:</label><br>
+              {{form.TypeOfPromoCode}}<br>
+              <label>Выберите статус:</label><br>
+              {{form.StatusOfPromoCode}}<br>
+              <label>Укажите лимит:</label><br>
+              {{form.Limit}}<br>
+              <label>Сумма:</label><br>
+              {{form.Sum}}<br>
+              <label>Действует с:</label><br>
               {{form.StartOfActive}}
-                            <input type="datetime-local" >
+              <input type="datetime-local" id="id_StartOfActive_datetime-local"><br>
+              <label>Действует по:</label><br>
               {{form.EndOfActive}}
-
-              <input type="datetime-local" >
+              <input type="datetime-local" id="id_EndOfActive_datetime-local"><br>
               {{form.errors}}
             <span>{{error}}</span>
 
-            <button class="btn btn-success" type="submit" value="Save">Добавить</button>
+            <button class="btn btn-success" type="submit" value="Save" style="margin-top:10px">Добавить</button>
           </form>
+
         </div>
 
       </div>
     </div>
   </div>
 </div>
+<script>
+    window.addEventListener("load", startup, false);
+function startup() {
+
+<!--  for (i in NamesTypeOfZoneAndParkingAndRide) {-->
+<!--    document.getElementById(NamesTypeOfZoneAndParkingAndRide[i][1]+'id_hex_color').value=NamesTypeOfZoneAndParkingAndRide[i][2]-->
+<!--    document.getElementById(NamesTypeOfZoneAndParkingAndRide[i][1]+'id_ColorZone').value=NamesTypeOfZoneAndParkingAndRide[i][2]-->
+<!--    document.getElementById(NamesTypeOfZoneAndParkingAndRide[i][1]+'MaxSpeed').value=NamesTypeOfZoneAndParkingAndRide[i][5]-->
+<!--    document.getElementById(NamesTypeOfZoneAndParkingAndRide[i][1]+'Description').value=NamesTypeOfZoneAndParkingAndRide[i][6]-->
+    EventStartOfActive = document.getElementById("id_StartOfActive_datetime-local");
+    EventEndOfActive = document.getElementById("id_EndOfActive_datetime-local");
+    EventStartOfActive.addEventListener("change", functionEvent, false);
+    EventEndOfActive.addEventListener("change", functionEvent, false);
+
+<!--    colorWell.select();-->
+console.log("ok")
+<!--  }-->
+}
+
+function functionEvent(event) {
+document.getElementById('id_StartOfActive').value=document.getElementById('id_StartOfActive_datetime-local').value
+console.log(document.getElementById('id_StartOfActive_datetime-local').value)
+document.getElementById('id_EndOfActive').value=document.getElementById('id_EndOfActive_datetime-local').value
+console.log("input")
+
+<!--  for (i in NamesTypeOfZoneAndParkingAndRide) {-->
+<!--  document.getElementById(NamesTypeOfZoneAndParkingAndRide[i][1]+'id_ColorZone').value=document.getElementById(NamesTypeOfZoneAndParkingAndRide[i][1]+'id_hex_color').value-->
+<!--  }-->
+}
+
+</script>
 {% endblock %}
 

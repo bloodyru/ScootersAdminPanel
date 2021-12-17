@@ -1,5 +1,5 @@
 from .models import User,Zone, TypeOfZone, PromoCodes
-from django.forms import ModelForm,TextInput,SelectMultiple,CheckboxInput,DateTimeInput
+from django.forms import ModelForm,TextInput,SelectMultiple,CheckboxInput,DateTimeInput, Select
 from django import forms
 
 class GaeParamsForm(forms.Form):
@@ -98,6 +98,11 @@ class AddPromocodeForm(forms.ModelForm):
         model = PromoCodes
         fields = ['NameOfPromoCode', 'TypeOfPromoCode', 'StatusOfPromoCode', 'Limit', 'Sum', 'StartOfActive', 'EndOfActive']
         widgets = {
-            "StartOfActive": DateTimeInput(attrs={'style': 'display:none'}),
-            "EndOfActive": DateTimeInput(attrs={'style': 'display:none'}),
+            "NameOfPromoCode": TextInput(attrs={'style': 'width:100%'}),
+            "TypeOfPromoCode": Select(attrs={'style': 'width:100%'}),
+            "StatusOfPromoCode": Select(attrs={'style': 'width:100%'}),
+            "Limit": TextInput(attrs={'style': 'width:100%'}),
+            "Sum": TextInput(attrs={'style': 'width:100%'}),
+            "StartOfActive": DateTimeInput(attrs={'style': 'display:none','id':'id_StartOfActive', 'value':'nine'}),
+             "EndOfActive": DateTimeInput(attrs={'style': 'display:none; width:100%','id':'id_EndOfActive'}),
         }
