@@ -7,7 +7,7 @@ from django.http import HttpResponseNotFound
 from django.http import HttpRequest
 from .models import Transport, User, Balance, Zone, TypeOfZone, PromoCodes
 from django.views.generic import DetailView
-from .forms import UserForm, ZoneredactorForm, NewZoneForm,TypeOfZoneForm
+from .forms import UserForm, ZoneredactorForm, NewZoneForm,TypeOfZoneForm, AddPromocodeForm
 from django.views.generic.edit import UpdateView, CreateView
 import json
 from django.db.models import F
@@ -150,8 +150,12 @@ def typeofzone(request):
 
 def promocodes(request):
     if request.method == 'POST':
-        b = request.POST
-        print ('zapros',b.get('MaxSpeed'))
+        form = AddPromocodeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('adm/promocodes.html')
+    else:
+        form = AddPromocodeForm()
     Promocodes = PromoCodes.objects.all()
     name = "Промокоды"
     summ = PromoCodes.objects.count()
@@ -166,4 +170,4 @@ def promocodes(request):
         nn = 'промокодов'
     else:
         nn = 'промокодов.'
-    return render(request, 'adm/promocodes.html', {'summ': summ, 'nn': nn,'name': name, 'Promocodes': Promocodes})
+    return render(request, 'adm/promocodes.html', {'form': form,'summ': summ, 'nn': nn,'name': name, 'Promocodes': Promocodes})

@@ -69,24 +69,24 @@ class Zone(models.Model):
         return reverse('zoneredactor', kwargs={'pk': self.pk})
 
 class TypesOfPromoCodes(models.Model):
-    TypeOfPromoCode = models.CharField(max_length=30, null=True)
+    TypeOfPromoCode = models.CharField(max_length=30, null=True, verbose_name="Тип")
     def __str__(self):
         return str(self.TypeOfPromoCode)
 
 class StatusesOfPromoCodes(models.Model):
-    StatusOfPromoCode = models.CharField(max_length=30, null=True)
+    StatusOfPromoCode = models.CharField(max_length=30, null=True, verbose_name="Статус")
     def __str__(self):
         return str(self.StatusOfPromoCode)
 
 class PromoCodes(models.Model):
-    NameOfPromoCode = models.CharField(max_length=30, null=True)
-    TypeOfPromoCode = models.ForeignKey(TypesOfPromoCodes, on_delete=models.SET_NULL, null=True)
-    StatusOfPromoCode = models.ForeignKey(StatusesOfPromoCodes, on_delete=models.SET_NULL, null=True)
-    Limit = models.IntegerField(null=True, max_length=3)
-    Sum = models.DecimalField(max_digits=7, decimal_places=2)
-    StartOfActive = models.DateTimeField(auto_now=False, auto_now_add=False)
-    EndOfActive = models.DateTimeField(auto_now=False, auto_now_add=False)
-    DateOfCreation = models.DateField(auto_now=False, auto_now_add=True)
+    NameOfPromoCode = models.CharField(max_length=30, null=True, verbose_name="Название промокода")
+    TypeOfPromoCode = models.ForeignKey(TypesOfPromoCodes, on_delete=models.SET_NULL, null=True, verbose_name="Тип")
+    StatusOfPromoCode = models.ForeignKey(StatusesOfPromoCodes, on_delete=models.SET_NULL, null=True, verbose_name="Статус")
+    Limit = models.IntegerField(null=True, max_length=3, verbose_name="Лимит")
+    Sum = models.DecimalField(max_digits=7, decimal_places=2, verbose_name="Сумма")
+    StartOfActive = models.DateTimeField(auto_now=False, auto_now_add=False, verbose_name="Действует с")
+    EndOfActive = models.DateTimeField(auto_now=False, auto_now_add=False, verbose_name="Действует по")
+    DateOfCreation = models.DateField(auto_now=False, auto_now_add=True, verbose_name="Дата создания")
     def __str__(self):
         return str(self.NameOfPromoCode)
 
