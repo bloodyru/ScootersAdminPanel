@@ -17,10 +17,10 @@ class Transport(models.Model):
 class User(models.Model):
     id = models.IntegerField(primary_key=True)
     Ico = models.ImageField()
-    Name = models.CharField(max_length=30, null=True)
+    Name = models.CharField(max_length=30, null=True, unique=True)
     Soname = models.CharField(max_length=30, null=True)
-    Phone = models.CharField(max_length=30, null=True)
-    Email = models.EmailField(max_length=40, null=False)
+    Phone = models.CharField(max_length=30, null=True,unique=True)
+    Email = models.EmailField(max_length=40, null=False,unique=True)
     IsActive = models.BooleanField(null=True)
     LastActive = models.DateTimeField(auto_now=True)
     DateOfRegistration = models.DateTimeField(auto_now_add=True)
@@ -51,14 +51,14 @@ class TypeOfZone(models.Model):
     ColorZone = models.CharField(max_length=7, null=True)
     CanYouScooterOnThisArea = models.BooleanField(null=True)
     CanYouParkingOnThisArea = models.BooleanField(null=True)
-    MaxSpeed = models.IntegerField(null=True, max_length=3)
+    MaxSpeed = models.IntegerField(null=True)
     Description = models.CharField(max_length=50, null=True)
     def __str__(self):
         return str(self.TypeZone)
 
 class Zone(models.Model):
     id = models.IntegerField(primary_key=True)
-    Name = models.CharField(max_length=30, null=True)
+    Name = models.CharField(max_length=30, null=True,unique=True)
     TypeZone = models.ForeignKey(TypeOfZone, on_delete=models.SET_NULL, null=True)
     GPSPoints = models.TextField()
     ColorZone =  models.CharField(max_length=7)
@@ -69,25 +69,30 @@ class Zone(models.Model):
         return reverse('zoneredactor', kwargs={'pk': self.pk})
 
 class TypesOfPromoCodes(models.Model):
-    TypeOfPromoCode = models.CharField(max_length=30, null=True, verbose_name="Тип")
+    TypeOfPromoCode = models.CharField(max_length=30, null=True, verbose_name="Тип",unique=True)
     def __str__(self):
         return str(self.TypeOfPromoCode)
 
 class StatusesOfPromoCodes(models.Model):
-    StatusOfPromoCode = models.CharField(max_length=30, null=True, verbose_name="Статус")
+    StatusOfPromoCode = models.CharField(max_length=30, null=True, verbose_name="Статус",unique=True)
     def __str__(self):
         return str(self.StatusOfPromoCode)
 
 class PromoCodes(models.Model):
-    NameOfPromoCode = models.CharField(max_length=30, null=True, verbose_name="Название промокода")
+    id = models.IntegerField(primary_key=True, unique=True)
+    NameOfPromoCode = models.CharField(max_length=30, null=True, verbose_name="Название промокода", unique=True)
     TypeOfPromoCode = models.ForeignKey(TypesOfPromoCodes, on_delete=models.SET_NULL, null=True, verbose_name="Тип")
     StatusOfPromoCode = models.ForeignKey(StatusesOfPromoCodes, on_delete=models.SET_NULL, null=True, verbose_name="Статус")
-    Limit = models.IntegerField(null=True, max_length=3, verbose_name="Лимит")
+    Limit = models.IntegerField(null=True, verbose_name="Лимит")
     Sum = models.DecimalField(max_digits=7, decimal_places=2, verbose_name="Сумма")
     StartOfActive = models.DateTimeField(auto_now=False, auto_now_add=False, verbose_name="Действует с")
     EndOfActive = models.DateTimeField(auto_now=False, auto_now_add=False, verbose_name="Действует по")
     DateOfCreation = models.DateField(auto_now=False, auto_now_add=True, verbose_name="Дата создания")
     def __str__(self):
         return str(self.NameOfPromoCode)
+
+    def get_absolute_url(self):
+        return reverse('promocodesredactor', kwargs={'pk': self.pk})
+
 
 

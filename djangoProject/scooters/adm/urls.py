@@ -15,5 +15,7 @@ urlpatterns = [
     path('delete/<int:pk>', views.deletezone, name='deletezone'),
     path('typeofzone.html', views.typeofzone, name='typeofzone'),
     path('promocodes.html', views.promocodes, name='promocodes'),
+    path('promocodesredactor/<int:pk>.html', views.promocodesredactor, name='promocodesredactor'),
+    path('promocodes.html', views.promocodesChange, name='promocodesChange'),
 
 ]

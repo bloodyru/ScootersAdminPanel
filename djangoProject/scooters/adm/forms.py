@@ -103,6 +103,6 @@ class AddPromocodeForm(forms.ModelForm):
             "StatusOfPromoCode": Select(attrs={'style': 'width:100%'}),
             "Limit": TextInput(attrs={'style': 'width:100%'}),
             "Sum": TextInput(attrs={'style': 'width:100%'}),
-            "StartOfActive": DateTimeInput(attrs={'style': 'display:none','id':'id_StartOfActive', 'value':'nine'}),
-             "EndOfActive": DateTimeInput(attrs={'style': 'display:none; width:100%','id':'id_EndOfActive'}),
+            "StartOfActive": DateTimeInput(attrs={'style': 'display:none', 'id':'id_StartOfActive'}),
+            "EndOfActive": DateTimeInput(attrs={'style': 'display:none; width:100%', 'id':'id_EndOfActive'}),
         }
