@@ -7,7 +7,7 @@ from django.http import HttpResponseNotFound
 from django.http import HttpRequest
 from .models import Transport, User, Balance, Zone, TypeOfZone, PromoCodes
 from django.views.generic import DetailView
-from .forms import UserForm, ZoneredactorForm, NewZoneForm,TypeOfZoneForm, AddPromocodeForm
+from .forms import UserForm, ZoneredactorForm, NewZoneForm,TypeOfZoneForm, AddPromocodeForm, ChangePromocodeForm
 from django.views.generic.edit import UpdateView, CreateView
 import json
 
@@ -152,12 +152,12 @@ def promocodes(request):
     # if request.method == 'POST':
     if request.POST.get("form_type") == 'AddForm':
         form = AddPromocodeForm(request.POST)
-        print ("ПОЛУЧЕНА AddForm", form)
-        if form.is_valid():
-            form.save()
-            return redirect('promocodes.html')
+        print ("ПОЛУЧЕНА AddForm")
+        # if form.is_valid():
+        #     form.save()
+        return redirect('promocodes.html')
     elif request.POST.get("form_type") == 'ChangeForm':
-        print("ПОЛУЧЕНА ChangeForm",request.POST)
+        print("ПОЛУЧЕНА ChangeForm")
         # Handle Elements from second Form
         # form = AddPromocodeForm(request.POST)
         # print(" FORMA0", form)
@@ -170,11 +170,13 @@ def promocodes(request):
             # print("Print w=",w)
 
             # form.save()
-    #     return redirect('promocodes.html')
+        return redirect('promocodes.html')
     #
     # else:
     form = AddPromocodeForm()
+    formForChange = ChangePromocodeForm()
     Promocodes = PromoCodes.objects.all()
+    print (Promocodes)
     name = "Промокоды"
     summ = PromoCodes.objects.count()
     n = summ % 10
@@ -188,62 +190,63 @@ def promocodes(request):
         nn = 'промокодов'
     else:
         nn = 'промокодов.'
-    return render(request, 'adm/promocodes.html', {'form': form,'summ': summ, 'nn': nn,'name': name, 'Promocodes': Promocodes})
+    return render(request, 'adm/promocodes.html', {'form': form, 'formForChange':formForChange, 'summ': summ,
+                                                   'nn': nn,'name': name, 'Promocodes': Promocodes})
 
-def promocodesChange(request):
-    if request.method == 'POST':
-        form = AddPromocodeForm(request.POST)
-        print(" FORMA1-начало",form)
-        print(" FORMA1-", form)
-        if form.is_valid():
-            print(" FORMA1.1-",form)
-            # q=form.cleaned_data.get('addnew')
-            # w=form.cleaned_data.get('NameOfPromoCode')
-            # print("Print q=",q)
-            # print("Print w=",w)
-
-            # form.save()
-            return redirect('promocodes.html')
-
-    else:
-        form = AddPromocodeForm()
-    Promocodes = PromoCodes.objects.all()
-    name = "Промокоды"
-    summ = PromoCodes.objects.count()
-    n = summ % 10
-    if n == 0:
-        nn = 'промокодов'
-    elif n == 1:
-        nn = 'промокод'
-    elif (n >= 2 and n <= 4):
-        nn = 'промокода'
-    elif (5 <= n <= 10):
-        nn = 'промокодов'
-    else:
-        nn = 'промокодов.'
-    return render(request, 'adm/promocodes.html', {'form': form,'summ': summ, 'nn': nn,'name': name, 'Promocodes': Promocodes})
-
-def promocodesredactor(request, pk):
-    if request.method == 'POST':
-        form = AddPromocodeForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('promocodes.html')
-
-    else:
-        form = AddPromocodeForm()
-    Promocodes = PromoCodes.objects.all()
-    name = "Промокоды"
-    summ = PromoCodes.objects.count()
-    n = summ % 10
-    if n == 0:
-        nn = 'промокодов'
-    elif n == 1:
-        nn = 'промокод'
-    elif (n >= 2 and n <= 4):
-        nn = 'промокода'
-    elif (5 <= n <= 10):
-        nn = 'промокодов'
-    else:
-        nn = 'промокодов.'
-    return render(request, 'adm/promocodes.html', {'form': form,'summ': summ, 'nn': nn,'name': name, 'Promocodes': Promocodes})
+# def promocodesChange(request):
+#     if request.method == 'POST':
+#         form = AddPromocodeForm(request.POST)
+#         print(" FORMA1-начало",form)
+#         print(" FORMA1-", form)
+#         if form.is_valid():
+#             print(" FORMA1.1-",form)
+#             # q=form.cleaned_data.get('addnew')
+#             # w=form.cleaned_data.get('NameOfPromoCode')
+#             # print("Print q=",q)
+#             # print("Print w=",w)
+#
+#             # form.save()
+#             return redirect('promocodes.html')
+#
+#     else:
+#         form = AddPromocodeForm()
+#     Promocodes = PromoCodes.objects.all()
+#     name = "Промокоды"
+#     summ = PromoCodes.objects.count()
+#     n = summ % 10
+#     if n == 0:
+#         nn = 'промокодов'
+#     elif n == 1:
+#         nn = 'промокод'
+#     elif (n >= 2 and n <= 4):
+#         nn = 'промокода'
+#     elif (5 <= n <= 10):
+#         nn = 'промокодов'
+#     else:
+#         nn = 'промокодов.'
+#     return render(request, 'adm/promocodes.html', {'form': form,'summ': summ, 'nn': nn,'name': name, 'Promocodes': Promocodes})
+#
+# def promocodesredactor(request, pk):
+#     if request.method == 'POST':
+#         form = AddPromocodeForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('promocodes.html')
+#
+#     else:
+#         form = AddPromocodeForm()
+#     Promocodes = PromoCodes.objects.all()
+#     name = "Промокоды"
+#     summ = PromoCodes.objects.count()
+#     n = summ % 10
+#     if n == 0:
+#         nn = 'промокодов'
+#     elif n == 1:
+#         nn = 'промокод'
+#     elif (n >= 2 and n <= 4):
+#         nn = 'промокода'
+#     elif (5 <= n <= 10):
+#         nn = 'промокодов'
+#     else:
+#         nn = 'промокодов.'
+#     return render(request, 'adm/promocodes.html', {'form': form,'summ': summ, 'nn': nn,'name': name, 'Promocodes': Promocodes})

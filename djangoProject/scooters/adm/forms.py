@@ -106,3 +106,17 @@ class AddPromocodeForm(forms.ModelForm):
             "StartOfActive": DateTimeInput(attrs={'style': 'display:none', 'id':'id_StartOfActive'}),
             "EndOfActive": DateTimeInput(attrs={'style': 'display:none; width:100%', 'id':'id_EndOfActive'}),
         }
+
+class ChangePromocodeForm(forms.ModelForm):
+    class Meta:
+        model = PromoCodes
+        fields = ['NameOfPromoCode', 'TypeOfPromoCode', 'StatusOfPromoCode', 'Limit', 'Sum', 'StartOfActive', 'EndOfActive']
+        widgets = {
+            "NameOfPromoCode": TextInput(attrs={'style': 'width:100%', 'id':'id_NameOfPromoCode_ForChange'}),
+            "TypeOfPromoCode": Select(attrs={'style': 'width:100%', 'id':'id_TypeOfPromoCode_ForChange'}),
+            "StatusOfPromoCode": Select(attrs={'style': 'width:100%', 'id':'id_StatusOfPromoCodee_ForChange'}),
+            "Limit": TextInput(attrs={'style': 'width:100%', 'id':'id_Limit_ForChange'}),
+            "Sum": TextInput(attrs={'style': 'width:100%', 'id':'id_Sum_ForChange'}),
+            "StartOfActive": DateTimeInput(attrs={'style': 'display:none', 'id':'id_StartOfActive_ForChange'}),
+            "EndOfActive": DateTimeInput(attrs={'style': 'display:none; width:100%', 'id':'id_EndOfActive_ForChange'}),
+        }
