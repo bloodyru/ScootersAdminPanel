@@ -91,8 +91,8 @@ class PromoCodes(models.Model):
     def __str__(self):
         return str(self.NameOfPromoCode)
 
-    def get_absolute_url(self):
-        return reverse('promocodesredactor', kwargs={'pk': self.pk})
+    # def get_absolute_url(self):
+    #     return reverse('promocodesredactor', kwargs={'pk': self.pk})
 
 
 

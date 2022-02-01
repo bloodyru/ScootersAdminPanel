@@ -114,7 +114,7 @@ class ChangePromocodeForm(forms.ModelForm):
         widgets = {
             "NameOfPromoCode": TextInput(attrs={'style': 'width:100%', 'id':'id_NameOfPromoCode_ForChange'}),
             "TypeOfPromoCode": Select(attrs={'style': 'width:100%', 'id':'id_TypeOfPromoCode_ForChange'}),
-            "StatusOfPromoCode": Select(attrs={'style': 'width:100%', 'id':'id_StatusOfPromoCodee_ForChange'}),
+            "StatusOfPromoCode": Select(attrs={'style': 'width:100%', 'id':'id_StatusOfPromoCode_ForChange'}),
             "Limit": TextInput(attrs={'style': 'width:100%', 'id':'id_Limit_ForChange'}),
             "Sum": TextInput(attrs={'style': 'width:100%', 'id':'id_Sum_ForChange'}),
             "StartOfActive": DateTimeInput(attrs={'style': 'display:none', 'id':'id_StartOfActive_ForChange'}),

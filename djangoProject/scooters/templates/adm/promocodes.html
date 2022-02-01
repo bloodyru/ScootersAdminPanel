@@ -124,18 +124,20 @@
         <tr>
           <td>
 
-              <button style="border-style: none;  background-color:inherit" onclick="popupPromocode1('{{el.NameOfPromoCode}}',
-               '{{el.TypeOfPromoCode}}', '{{el.StatusOfPromoCode}}','{{el.Limit}}', '{{el.Sum}}', '{{el.StartOfActive}}',
-               '{{el.EndOfActive}}', '{{el.DateOfCreation}}')" id="id_Button">
+              <button style="border-style: none;  background-color:inherit" onclick="popupPromocode('{{el.NameOfPromoCode}}',
+               '{{el.TypeOfPromoCode.id}}', '{{el.StatusOfPromoCode.id}}','{{el.Limit}}', '{{el.Sum}}', '{{el.StartOfActive}}',
+                '{{el.EndOfActive}}', '{{el.DateOfCreation}}')" id="id_Button">
                 <a href="#popupPromocode">{{el.NameOfPromoCode}}</a>
               </button>
 
           </td>
           <td>{{el.TypeOfPromoCode}}</td>
+<!--          <td hidden>{{el.TypeOfPromoCode.id}}</td>-->
           <td>{{el.StatusOfPromoCode}}</td>
+<!--          <td hidden>{{el.StatusOfPromoCode.id}}</td>-->
           <td>{{el.Limit}}</td>
           <td>{{el.Sum}}</td>
-          <td>{{el.StartOfActive}}</td>
+          <td>{{el.StartOfActive|date:"D d M Y"}}</td>
           <td>{{el.EndOfActive}}</td>
           <td>{{el.DateOfCreation}}</td>
         </tr>
@@ -206,29 +208,29 @@
 <!--              </select>-->
               {{formForChange.TypeOfPromoCode}}<br>
               <label>Выберите статус:</label><br>
-              <select name="StatusOfPromoCode" style="width:100%" required="" id="id_StatusOfPromoCode_ForChange">
-                <option value="">---------</option>
+<!--              <select name="StatusOfPromoCode" style="width:100%" required="" id="id_StatusOfPromoCode_ForChange">-->
+<!--                <option value="">-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</option>-->
 
-                <option value="1" selected="">Активный</option>
+<!--                <option value="1" selected="">Активный</option>-->
 
-                <option value="2">Не активный</option>
+<!--                <option value="2">Не активный</option>-->
 
-              </select>
-<!--              {{formForChange.StatusOfPromoCode}}<br>-->
+<!--              </select>-->
+              {{formForChange.StatusOfPromoCode}}<br>
               <label>Укажите лимит:</label><br>
-              <input type="text" name="Limit" style="width:100%" required="" id="id_Limit_ForChange">
-<!--              {{formForChange.Limit}}<br>-->
+<!--              <input type="text" name="Limit" style="width:100%" required="" id="id_Limit_ForChange">-->
+              {{formForChange.Limit}}<br>
               <label>Сумма:</label><br>
-              <input type="text" name="Sum" style="width:100%" required="" id="id_Sum_ForChange">
-<!--              {{formForChange.Sum}}<br>-->
+<!--              <input type="text" name="Sum" style="width:100%" required="" id="id_Sum_ForChange">-->
+              {{formForChange.Sum}}<br>
               <label>Действует с:</label><br>
-<!--              {{formForChange.StartOfActive}}-->
+              {{formForChange.StartOfActive}}
 <!--              <input type="text" name="StartOfActive_ForChange" style="display:none" id="id_StartOfActive_ForChange">-->
-<!--              <input type="datetime-local" name="StartOfActive_ForChange" id="id_StartOfActive_datetime-local_ForChange"><br>-->
+              <input type="datetime-local" name="StartOfActive_ForChange" id="id_StartOfActive_datetime-local_ForChange"><br>
               <label>Действует по:</label><br>
-<!--              {{formForChange.EndOfActive}}-->
+              {{formForChange.EndOfActive}}
 <!--              <input type="text" name="EndOfActive_ForChange" style="display:none" id="id_EndOfActive_ForChange">-->
-<!--              <input type="datetime-local" name="EndOfActive_ForChange" id="id_EndOfActive_datetime-local_ForChange"><br>-->
+              <input type="datetime-local" name="EndOfActive_ForChange" id="id_EndOfActive_datetime-local_ForChange"><br>
               {{formForChange.errors}}
             <span>{{error}}</span>
 
@@ -249,7 +251,6 @@ function startup() {
     EndOfActiveDatetimeLocal = document.getElementById("id_EndOfActive_datetime-local");
     StartOfActiveDatetimeLocal.addEventListener("change", functionEvent, false);
     EndOfActiveDatetimeLocal.addEventListener("change", functionEvent, false);
-    console.log(  "{{Promocodes}}")
 }
 
 function functionEvent(event) {
@@ -259,10 +260,16 @@ document.getElementById('id_EndOfActive').value=EndOfActiveDatetimeLocal.value
 
 
 
-function popupPromocode1(NameOfPromoCode,TypeOfPromoCode, StatusOfPromoCode,Limit, Sum, StartOfActive,EndOfActive,
- DateOfCreation) {
- element = document.getElementById("id_NameOfPromoCode_ForChange").value = NameOfPromoCode;
-  element = document.getElementById("id_TypeOfPromoCode_ForChange").value = "1";
+function popupPromocode(NameOfPromoCode,TypeOfPromoCodeID,StatusOfPromoCodeID,Limit, Sum, StartOfActive,EndOfActive, DateOfCreation) {
+document.getElementById("id_NameOfPromoCode_ForChange").value = NameOfPromoCode;
+document.getElementById("id_TypeOfPromoCode_ForChange").value = TypeOfPromoCodeID;
+document.getElementById("id_StatusOfPromoCode_ForChange").value = StatusOfPromoCodeID;
+document.getElementById("id_Limit_ForChange").value = Limit;
+document.getElementById("id_Sum_ForChange").value = Sum;
+document.getElementById("id_StartOfActive_datetime-local_ForChange").value = StartOfActive;
+console.log(StartOfActive)
+document.getElementById("id_EndOfActive_datetime-local_ForChange").value = EndOfActive;
+console.log(EndOfActive)
 }
 
 </script>

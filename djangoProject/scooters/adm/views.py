@@ -153,8 +153,8 @@ def promocodes(request):
     if request.POST.get("form_type") == 'AddForm':
         form = AddPromocodeForm(request.POST)
         print ("ПОЛУЧЕНА AddForm")
-        # if form.is_valid():
-        #     form.save()
+        if form.is_valid():
+            form.save()
         return redirect('promocodes.html')
     elif request.POST.get("form_type") == 'ChangeForm':
         print("ПОЛУЧЕНА ChangeForm")
@@ -176,7 +176,12 @@ def promocodes(request):
     form = AddPromocodeForm()
     formForChange = ChangePromocodeForm()
     Promocodes = PromoCodes.objects.all()
-    print (Promocodes)
+    Promocodes1 = PromoCodes.objects.values_list("NameOfPromoCode","StartOfActive")
+    # Promocodes1=Promocodes1[0]
+    # for e in Promocodes1:
+    #     print(e)
+    # print ("Promocodes1: ",Promocodes1.get('NameOfPromoCode')
+    print (Promocodes1)
     name = "Промокоды"
     summ = PromoCodes.objects.count()
     n = summ % 10
@@ -249,4 +254,4 @@ def promocodes(request):
 #         nn = 'промокодов'
 #     else:
 #         nn = 'промокодов.'
-#     return render(request, 'adm/promocodes.html', {'form': form,'summ': summ, 'nn': nn,'name': name, 'Promocodes': Promocodes})
+#     return render(request, 'adm/promocodes.html#popupPromocode', {'form': form,'summ': summ, 'nn': nn,'name': name, 'Promocodes': Promocodes})
