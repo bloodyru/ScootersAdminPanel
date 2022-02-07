@@ -1,5 +1,7 @@
 {% extends 'adm/index.html' %}
 {% load static %}
+{% load customtags %}
+{% load tz %}
 {% block content_header %}
 
 <div class="content-header">
@@ -125,8 +127,8 @@
           <td>
 
               <button style="border-style: none;  background-color:inherit" onclick="popupPromocode('{{el.NameOfPromoCode}}',
-               '{{el.TypeOfPromoCode.id}}', '{{el.StatusOfPromoCode.id}}','{{el.Limit}}', '{{el.Sum}}', '{{el.StartOfActive}}',
-                '{{el.EndOfActive}}', '{{el.DateOfCreation}}')" id="id_Button">
+               '{{el.TypeOfPromoCode.id}}', '{{el.StatusOfPromoCode.id}}','{{el.Limit}}','{{el.Sum}}', '{{el.StartOfActive|StartOfActive}}',
+                '{{el.EndOfActive|StartOfActive}}', '{{el.DateOfCreation}}')" id="id_Button">
                 <a href="#popupPromocode">{{el.NameOfPromoCode}}</a>
               </button>
 
@@ -137,8 +139,8 @@
 <!--          <td hidden>{{el.StatusOfPromoCode.id}}</td>-->
           <td>{{el.Limit}}</td>
           <td>{{el.Sum}}</td>
-          <td>{{el.StartOfActive|date:"D d M Y"}}</td>
-          <td>{{el.EndOfActive}}</td>
+          <td>{{el.StartOfActive|localtime}}</td>
+          <td>{{el.EndOfActive|utc}}</td>
           <td>{{el.DateOfCreation}}</td>
         </tr>
         {% endfor%}
@@ -198,38 +200,19 @@
               <label>Введите название промокода:</label><br>
               <input type="text" name="NameOfPromoCode" style="width:100%" maxlength="30" required=""
                      id="id_NameOfPromoCode_ForChange">
-<!--              {{formForChange.NameOfPromoCode}}<br>-->
               <label>Выберите тип промокода:</label><br>
-<!--              <select name="TypeOfPromoCode" style="width:100%" required="" id="id_TypeOfPromoCode_ForChange">-->
-<!--                 <option value="">-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</option>-->
-
-<!--                <option value="1" selected="">Пополение баланса</option>-->
-
-<!--              </select>-->
               {{formForChange.TypeOfPromoCode}}<br>
               <label>Выберите статус:</label><br>
-<!--              <select name="StatusOfPromoCode" style="width:100%" required="" id="id_StatusOfPromoCode_ForChange">-->
-<!--                <option value="">-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</option>-->
-
-<!--                <option value="1" selected="">Активный</option>-->
-
-<!--                <option value="2">Не активный</option>-->
-
-<!--              </select>-->
               {{formForChange.StatusOfPromoCode}}<br>
               <label>Укажите лимит:</label><br>
-<!--              <input type="text" name="Limit" style="width:100%" required="" id="id_Limit_ForChange">-->
               {{formForChange.Limit}}<br>
               <label>Сумма:</label><br>
-<!--              <input type="text" name="Sum" style="width:100%" required="" id="id_Sum_ForChange">-->
               {{formForChange.Sum}}<br>
               <label>Действует с:</label><br>
               {{formForChange.StartOfActive}}
-<!--              <input type="text" name="StartOfActive_ForChange" style="display:none" id="id_StartOfActive_ForChange">-->
               <input type="datetime-local" name="StartOfActive_ForChange" id="id_StartOfActive_datetime-local_ForChange"><br>
               <label>Действует по:</label><br>
               {{formForChange.EndOfActive}}
-<!--              <input type="text" name="EndOfActive_ForChange" style="display:none" id="id_EndOfActive_ForChange">-->
               <input type="datetime-local" name="EndOfActive_ForChange" id="id_EndOfActive_datetime-local_ForChange"><br>
               {{formForChange.errors}}
             <span>{{error}}</span>
@@ -247,29 +230,39 @@
 <script>
 window.addEventListener("load", startup, false);
 function startup() {
+console.log("function startup start")
     StartOfActiveDatetimeLocal = document.getElementById("id_StartOfActive_datetime-local");
     EndOfActiveDatetimeLocal = document.getElementById("id_EndOfActive_datetime-local");
+    StartOfActive_datetime_local_ForChange = document.getElementById("id_StartOfActive_datetime-local_ForChange")
+    EndOfActive_datetime_local_ForChange = document.getElementById("id_EndOfActive_datetime-local_ForChange")
     StartOfActiveDatetimeLocal.addEventListener("change", functionEvent, false);
     EndOfActiveDatetimeLocal.addEventListener("change", functionEvent, false);
+    StartOfActive_datetime_local_ForChange.addEventListener("change", functionEvent, false);
+    EndOfActive_datetime_local_ForChange.addEventListener("change", functionEvent, false);
+console.log("function startup end")
+
 }
 
 function functionEvent(event) {
 document.getElementById('id_StartOfActive').value=StartOfActiveDatetimeLocal.value
 document.getElementById('id_EndOfActive').value=EndOfActiveDatetimeLocal.value
+document.getElementById('id_StartOfActive_ForChange').value=StartOfActive_datetime_local_ForChange.value
+document.getElementById('id_EndOfActive_ForChange').value=EndOfActive_datetime_local_ForChange.value
 }
 
 
 
-function popupPromocode(NameOfPromoCode,TypeOfPromoCodeID,StatusOfPromoCodeID,Limit, Sum, StartOfActive,EndOfActive, DateOfCreation) {
+function popupPromocode(NameOfPromoCode,TypeOfPromoCodeID,StatusOfPromoCodeID,Limit,Sum,StartOfActive,EndOfActive,DateOfCreation) {
+console.log("popupPromocode")
 document.getElementById("id_NameOfPromoCode_ForChange").value = NameOfPromoCode;
 document.getElementById("id_TypeOfPromoCode_ForChange").value = TypeOfPromoCodeID;
 document.getElementById("id_StatusOfPromoCode_ForChange").value = StatusOfPromoCodeID;
 document.getElementById("id_Limit_ForChange").value = Limit;
-document.getElementById("id_Sum_ForChange").value = Sum;
+document.getElementById("id_Sum_ForChange").value = parseFloat(Sum);
 document.getElementById("id_StartOfActive_datetime-local_ForChange").value = StartOfActive;
-console.log(StartOfActive)
+document.getElementById("id_StartOfActive_ForChange").value = StartOfActive;
 document.getElementById("id_EndOfActive_datetime-local_ForChange").value = EndOfActive;
-console.log(EndOfActive)
+document.getElementById("id_EndOfActive_ForChange").value = EndOfActive;
 }
 
 </script>

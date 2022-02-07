@@ -80,7 +80,7 @@ class StatusesOfPromoCodes(models.Model):
 
 class PromoCodes(models.Model):
     id = models.IntegerField(primary_key=True, unique=True)
-    NameOfPromoCode = models.CharField(max_length=30, null=True, verbose_name="Название промокода", unique=True)
+    NameOfPromoCode = models.CharField(max_length=30, null=True, verbose_name="Название промокода")
     TypeOfPromoCode = models.ForeignKey(TypesOfPromoCodes, on_delete=models.SET_NULL, null=True, verbose_name="Тип")
     StatusOfPromoCode = models.ForeignKey(StatusesOfPromoCodes, on_delete=models.SET_NULL, null=True, verbose_name="Статус")
     Limit = models.IntegerField(null=True, verbose_name="Лимит")

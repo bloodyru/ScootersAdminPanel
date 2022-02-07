@@ -149,39 +149,10 @@ def typeofzone(request):
     return render(request, 'adm/typeofzone.html', {'name': name, 'typezone': typezone,'error': error, 'massiv': massiv})
 
 def promocodes(request):
-    # if request.method == 'POST':
-    if request.POST.get("form_type") == 'AddForm':
-        form = AddPromocodeForm(request.POST)
-        print ("ПОЛУЧЕНА AddForm")
-        if form.is_valid():
-            form.save()
-        return redirect('promocodes.html')
-    elif request.POST.get("form_type") == 'ChangeForm':
-        print("ПОЛУЧЕНА ChangeForm")
-        # Handle Elements from second Form
-        # form = AddPromocodeForm(request.POST)
-        # print(" FORMA0", form)
-        # if form.is_valid():
-        #
-        #     print(" FORMA0.0",form)
-            # q=form.cleaned_data.get('addnew')
-            # w=form.cleaned_data.get('NameOfPromoCode')
-            # print("Print q=",q)
-            # print("Print w=",w)
-
-            # form.save()
-        return redirect('promocodes.html')
-    #
-    # else:
+    error = ''
     form = AddPromocodeForm()
     formForChange = ChangePromocodeForm()
     Promocodes = PromoCodes.objects.all()
-    Promocodes1 = PromoCodes.objects.values_list("NameOfPromoCode","StartOfActive")
-    # Promocodes1=Promocodes1[0]
-    # for e in Promocodes1:
-    #     print(e)
-    # print ("Promocodes1: ",Promocodes1.get('NameOfPromoCode')
-    print (Promocodes1)
     name = "Промокоды"
     summ = PromoCodes.objects.count()
     n = summ % 10
@@ -195,8 +166,43 @@ def promocodes(request):
         nn = 'промокодов'
     else:
         nn = 'промокодов.'
+    if request.POST.get("form_type") == 'AddForm':
+        form = AddPromocodeForm(request.POST)
+        print ("ПОЛУЧЕНА AddForm")
+        if form.is_valid():
+            form.save()
+        return redirect('promocodes.html')
+    elif request.POST.get("form_type") == 'ChangeForm':
+        print("ПОЛУЧЕНА ChangeForm")
+        form = ChangePromocodeForm(request.POST)
+        if form.is_valid(): # если форма правильно заполнена:
+            print("form.is_valid")
+            PromoCode = PromoCodes.objects.get(NameOfPromoCode = form.cleaned_data.get('NameOfPromoCode')) # получаем тип зоны из модели с TypeZone равным TypeZone со страницы
+            PromoCode.TypeOfPromoCode = form.cleaned_data.get('TypeOfPromoCode') # значению .ColorZone модели TypeOfZoneObject, присваиваем значение со страницы
+            PromoCode.StatusOfPromoCode = form.cleaned_data.get('StatusOfPromoCode')
+            PromoCode.Limit = form.cleaned_data.get('Limit')
+            PromoCode.Sum = form.cleaned_data.get('Sum')
+            PromoCode.StartOfActive = form.cleaned_data.get('StartOfActive')
+            PromoCode.EndOfActive = form.cleaned_data.get('EndOfActive')
+            PromoCode.TypeOfPromoCode = form.cleaned_data.get('TypeOfPromoCode')
+            PromoCode.save()
+
+            # TypeOfZoneObject.ColorZone = form.cleaned_data.get('ColorZone') # значению .ColorZone модели TypeOfZoneObject, присваиваем значение со страницы
+            # TypeOfZoneObject.CanYouScooterOnThisArea = form.cleaned_data.get('CanYouScooterOnThisArea')
+            # TypeOfZoneObject.CanYouParkingOnThisArea = form.cleaned_data.get('CanYouParkingOnThisArea')
+            # TypeOfZoneObject.MaxSpeed = form.cleaned_data.get('MaxSpeed')
+            # TypeOfZoneObject.Description = form.cleaned_data.get('Description')
+            # TypeOfZoneObject.save() # сохраняем модель
+        else:
+            print("error")
+            error = form.errors # если форма заполнена не правильно отправляем ошибки на страницу
+            # form.save()
+            return render(request, 'adm/promocodes.html', {'form': form, 'formForChange': formForChange, 'summ': summ,
+                                                'nn': nn, 'name': name, 'Promocodes': Promocodes,'error': error})
+        return redirect('promocodes.html')
+
     return render(request, 'adm/promocodes.html', {'form': form, 'formForChange':formForChange, 'summ': summ,
-                                                   'nn': nn,'name': name, 'Promocodes': Promocodes})
+                                                   'nn': nn,'name': name, 'Promocodes': Promocodes,'error': error})
 
 # def promocodesChange(request):
 #     if request.method == 'POST':
