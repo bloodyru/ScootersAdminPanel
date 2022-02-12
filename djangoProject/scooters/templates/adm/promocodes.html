@@ -126,7 +126,7 @@
         <tr>
           <td>
 
-              <button style="border-style: none;  background-color:inherit" onclick="popupPromocode('{{el.NameOfPromoCode}}',
+              <button style="border-style: none;  background-color:inherit" onclick="popupPromocode('{{el.id}}','{{el.NameOfPromoCode}}',
                '{{el.TypeOfPromoCode.id}}', '{{el.StatusOfPromoCode.id}}','{{el.Limit}}','{{el.Sum}}', '{{el.StartOfActive|StartOfActive}}',
                 '{{el.EndOfActive|StartOfActive}}', '{{el.DateOfCreation}}')" id="id_Button">
                 <a href="#popupPromocode">{{el.NameOfPromoCode}}</a>
@@ -175,7 +175,7 @@
               {{form.EndOfActive}}
               <input type="datetime-local" id="id_EndOfActive_datetime-local"><br>
               {{form.errors}}
-            <span>{{error}}</span>
+            <span>{{AddFormerrors}}</span>
 
             <button class="btn btn-success" type="submit" value="Save" style="margin-top:10px">Добавить</button>
           </form>
@@ -197,6 +197,7 @@
           <form method="post" action="{%url 'promocodes' %}" name="btnform1" id="ChangeForm">
             {% csrf_token %}
               <input type="hidden" name="form_type" value="ChangeForm">
+              <input type="hidden" name="promocodeIdname" id="promocodeId">
               <label>Введите название промокода:</label><br>
               <input type="text" name="NameOfPromoCode" style="width:100%" maxlength="30" required=""
                      id="id_NameOfPromoCode_ForChange">
@@ -215,7 +216,7 @@
               {{formForChange.EndOfActive}}
               <input type="datetime-local" name="EndOfActive_ForChange" id="id_EndOfActive_datetime-local_ForChange"><br>
               {{formForChange.errors}}
-            <span>{{error}}</span>
+            <span>{{errorformChange}}</span>
 
             <button class="btn btn-success" type="submit" value="Save" style="margin-top:10px">Изменить</button>
           </form>
@@ -252,8 +253,10 @@ document.getElementById('id_EndOfActive_ForChange').value=EndOfActive_datetime_l
 
 
 
-function popupPromocode(NameOfPromoCode,TypeOfPromoCodeID,StatusOfPromoCodeID,Limit,Sum,StartOfActive,EndOfActive,DateOfCreation) {
+function popupPromocode(promocodeId, NameOfPromoCode,TypeOfPromoCodeID,StatusOfPromoCodeID,Limit,Sum,StartOfActive,EndOfActive,DateOfCreation) {
 console.log("popupPromocode")
+document.getElementById("promocodeId").value = promocodeId;
+console.log(promocodeId)
 document.getElementById("id_NameOfPromoCode_ForChange").value = NameOfPromoCode;
 document.getElementById("id_TypeOfPromoCode_ForChange").value = TypeOfPromoCodeID;
 document.getElementById("id_StatusOfPromoCode_ForChange").value = StatusOfPromoCodeID;

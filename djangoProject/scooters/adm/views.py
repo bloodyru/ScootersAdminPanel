@@ -4,6 +4,7 @@ from django.core.management.commands import dumpdata
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.http import HttpResponseNotFound
+from django.template.response import TemplateResponse
 from django.http import HttpRequest
 from .models import Transport, User, Balance, Zone, TypeOfZone, PromoCodes
 from django.views.generic import DetailView
@@ -167,97 +168,40 @@ def promocodes(request):
     else:
         nn = 'промокодов.'
     if request.POST.get("form_type") == 'AddForm':
-        form = AddPromocodeForm(request.POST)
+        AddForm = AddPromocodeForm(request.POST)
         print ("ПОЛУЧЕНА AddForm")
-        if form.is_valid():
-            form.save()
-        return redirect('promocodes.html')
+        if AddForm.is_valid():
+            AddForm.save()
+        else:
+            print("AddFormerror")
+            AddFormerrors = AddForm.errors  # если форма заполнена не правильно отправляем ошибки на страницу
+            return render(request, 'adm/promocodes.html', {'form': form, 'formForChange': formForChange, 'summ': summ,
+                                                           'nn': nn, 'name': name, 'Promocodes': Promocodes,
+                                                           'AddFormerrors': AddFormerrors})
     elif request.POST.get("form_type") == 'ChangeForm':
         print("ПОЛУЧЕНА ChangeForm")
-        form = ChangePromocodeForm(request.POST)
-        if form.is_valid(): # если форма правильно заполнена:
-            print("form.is_valid")
-            PromoCode = PromoCodes.objects.get(NameOfPromoCode = form.cleaned_data.get('NameOfPromoCode')) # получаем тип зоны из модели с TypeZone равным TypeZone со страницы
-            PromoCode.TypeOfPromoCode = form.cleaned_data.get('TypeOfPromoCode') # значению .ColorZone модели TypeOfZoneObject, присваиваем значение со страницы
-            PromoCode.StatusOfPromoCode = form.cleaned_data.get('StatusOfPromoCode')
-            PromoCode.Limit = form.cleaned_data.get('Limit')
-            PromoCode.Sum = form.cleaned_data.get('Sum')
-            PromoCode.StartOfActive = form.cleaned_data.get('StartOfActive')
-            PromoCode.EndOfActive = form.cleaned_data.get('EndOfActive')
-            PromoCode.TypeOfPromoCode = form.cleaned_data.get('TypeOfPromoCode')
+        formChange = ChangePromocodeForm(request.POST)
+        promocodeId = request.POST.get("promocodeIdname")
+        if formChange.is_valid(): # если форма правильно заполнена:
+            print("ChangeForm is_valid")
+            PromoCode = PromoCodes.objects.get(id=promocodeId) # получаем промокод по id промокода из формы
+            PromoCode.NameOfPromoCode = formChange.cleaned_data.get('NameOfPromoCode') # присваиваем имя промокода из формы
+            PromoCode.TypeOfPromoCode = formChange.cleaned_data.get('TypeOfPromoCode')
+            PromoCode.StatusOfPromoCode = formChange.cleaned_data.get('StatusOfPromoCode')
+            PromoCode.Limit = formChange.cleaned_data.get('Limit')
+            PromoCode.Sum = formChange.cleaned_data.get('Sum')
+            PromoCode.StartOfActive = formChange.cleaned_data.get('StartOfActive')
+            PromoCode.EndOfActive = formChange.cleaned_data.get('EndOfActive')
+            PromoCode.TypeOfPromoCode = formChange.cleaned_data.get('TypeOfPromoCode')
             PromoCode.save()
-
-            # TypeOfZoneObject.ColorZone = form.cleaned_data.get('ColorZone') # значению .ColorZone модели TypeOfZoneObject, присваиваем значение со страницы
-            # TypeOfZoneObject.CanYouScooterOnThisArea = form.cleaned_data.get('CanYouScooterOnThisArea')
-            # TypeOfZoneObject.CanYouParkingOnThisArea = form.cleaned_data.get('CanYouParkingOnThisArea')
-            # TypeOfZoneObject.MaxSpeed = form.cleaned_data.get('MaxSpeed')
-            # TypeOfZoneObject.Description = form.cleaned_data.get('Description')
-            # TypeOfZoneObject.save() # сохраняем модель
         else:
-            print("error")
-            error = form.errors # если форма заполнена не правильно отправляем ошибки на страницу
-            # form.save()
-            return render(request, 'adm/promocodes.html', {'form': form, 'formForChange': formForChange, 'summ': summ,
-                                                'nn': nn, 'name': name, 'Promocodes': Promocodes,'error': error})
+            print("ChangeForm error")
+            errorformChange = formChange.errors # если форма заполнена не правильно отправляем ошибки на страницу
+            return TemplateResponse (request ,'adm/promocodes.html', {'form': form, 'formForChange': formForChange, 'summ': summ,
+                                                 'nn': nn, 'name': name, 'Promocodes': Promocodes,'errorformChange': errorformChange})
+            # return render(request, 'adm/promocodes.html', {'form': form, 'formForChange': formForChange, 'summ': summ,
+            #                                     'nn': nn, 'name': name, 'Promocodes': Promocodes,'errorformChange': errorformChange})
         return redirect('promocodes.html')
-
     return render(request, 'adm/promocodes.html', {'form': form, 'formForChange':formForChange, 'summ': summ,
                                                    'nn': nn,'name': name, 'Promocodes': Promocodes,'error': error})
 
-# def promocodesChange(request):
-#     if request.method == 'POST':
-#         form = AddPromocodeForm(request.POST)
-#         print(" FORMA1-начало",form)
-#         print(" FORMA1-", form)
-#         if form.is_valid():
-#             print(" FORMA1.1-",form)
-#             # q=form.cleaned_data.get('addnew')
-#             # w=form.cleaned_data.get('NameOfPromoCode')
-#             # print("Print q=",q)
-#             # print("Print w=",w)
-#
-#             # form.save()
-#             return redirect('promocodes.html')
-#
-#     else:
-#         form = AddPromocodeForm()
-#     Promocodes = PromoCodes.objects.all()
-#     name = "Промокоды"
-#     summ = PromoCodes.objects.count()
-#     n = summ % 10
-#     if n == 0:
-#         nn = 'промокодов'
-#     elif n == 1:
-#         nn = 'промокод'
-#     elif (n >= 2 and n <= 4):
-#         nn = 'промокода'
-#     elif (5 <= n <= 10):
-#         nn = 'промокодов'
-#     else:
-#         nn = 'промокодов.'
-#     return render(request, 'adm/promocodes.html', {'form': form,'summ': summ, 'nn': nn,'name': name, 'Promocodes': Promocodes})
-#
-# def promocodesredactor(request, pk):
-#     if request.method == 'POST':
-#         form = AddPromocodeForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('promocodes.html')
-#
-#     else:
-#         form = AddPromocodeForm()
-#     Promocodes = PromoCodes.objects.all()
-#     name = "Промокоды"
-#     summ = PromoCodes.objects.count()
-#     n = summ % 10
-#     if n == 0:
-#         nn = 'промокодов'
-#     elif n == 1:
-#         nn = 'промокод'
-#     elif (n >= 2 and n <= 4):
-#         nn = 'промокода'
-#     elif (5 <= n <= 10):
-#         nn = 'промокодов'
-#     else:
-#         nn = 'промокодов.'
-#     return render(request, 'adm/promocodes.html#popupPromocode', {'form': form,'summ': summ, 'nn': nn,'name': name, 'Promocodes': Promocodes})
