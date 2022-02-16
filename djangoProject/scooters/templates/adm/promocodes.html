@@ -41,6 +41,14 @@
     opacity:1;
     visibility:visible;
 }
+.popup.open{
+    opacity:1;
+    visibility:visible;
+}
+.popup.open .popup__content{
+    transform: translate(0px, 0px);
+    opacity:1;
+}
 
 .popup:target .popup__content{
     transform: translate(0px, 0px);
@@ -129,14 +137,12 @@
               <button style="border-style: none;  background-color:inherit" onclick="popupPromocode('{{el.id}}','{{el.NameOfPromoCode}}',
                '{{el.TypeOfPromoCode.id}}', '{{el.StatusOfPromoCode.id}}','{{el.Limit}}','{{el.Sum}}', '{{el.StartOfActive|StartOfActive}}',
                 '{{el.EndOfActive|StartOfActive}}', '{{el.DateOfCreation}}')" id="id_Button">
-                <a href="#popupPromocode">{{el.NameOfPromoCode}}</a>
+                <a href="#popupPromocode"  class="popup-link">{{el.NameOfPromoCode}}</a>
               </button>
 
           </td>
           <td>{{el.TypeOfPromoCode}}</td>
-<!--          <td hidden>{{el.TypeOfPromoCode.id}}</td>-->
           <td>{{el.StatusOfPromoCode}}</td>
-<!--          <td hidden>{{el.StatusOfPromoCode.id}}</td>-->
           <td>{{el.Limit}}</td>
           <td>{{el.Sum}}</td>
           <td>{{el.StartOfActive|localtime}}</td>
@@ -186,10 +192,10 @@
     </div>
   </div>
   <div id="popupPromocode" class="popup">
-    <a href="#header" class="popup__area"></a>
+    <a href="#header" class="popup__area close-popup" ></a>
     <div class="popup__body">
       <div class="popup__content">
-        <a href="#header" class="popup__close">X</a>
+        <a href="#header" class="popup__close close-popup">X</a>
         <div class="popup__title">
           Редактировать промокод:
         </div>
@@ -199,7 +205,7 @@
               <input type="hidden" name="form_type" value="ChangeForm">
               <input type="hidden" name="promocodeIdname" id="promocodeId">
               <label>Введите название промокода:</label><br>
-              <input type="text" name="NameOfPromoCode" style="width:100%" maxlength="30" required=""
+              <input type="text" name="NameOfPromoCode" style="width:100%" maxlength="30"
                      id="id_NameOfPromoCode_ForChange">
               <label>Выберите тип промокода:</label><br>
               {{formForChange.TypeOfPromoCode}}<br>
@@ -215,8 +221,7 @@
               <label>Действует по:</label><br>
               {{formForChange.EndOfActive}}
               <input type="datetime-local" name="EndOfActive_ForChange" id="id_EndOfActive_datetime-local_ForChange"><br>
-              {{formForChange.errors}}
-            <span>{{errorformChange}}</span>
+              <span>{{formForChange.errors}}</span>
 
             <button class="btn btn-success" type="submit" value="Save" style="margin-top:10px">Изменить</button>
           </form>
@@ -229,45 +234,93 @@
 
 </div>
 <script>
+
+
 window.addEventListener("load", startup, false);
 function startup() {
-console.log("function startup start")
-    StartOfActiveDatetimeLocal = document.getElementById("id_StartOfActive_datetime-local");
-    EndOfActiveDatetimeLocal = document.getElementById("id_EndOfActive_datetime-local");
-    StartOfActive_datetime_local_ForChange = document.getElementById("id_StartOfActive_datetime-local_ForChange")
-    EndOfActive_datetime_local_ForChange = document.getElementById("id_EndOfActive_datetime-local_ForChange")
-    StartOfActiveDatetimeLocal.addEventListener("change", functionEvent, false);
-    EndOfActiveDatetimeLocal.addEventListener("change", functionEvent, false);
-    StartOfActive_datetime_local_ForChange.addEventListener("change", functionEvent, false);
-    EndOfActive_datetime_local_ForChange.addEventListener("change", functionEvent, false);
-console.log("function startup end")
+  console.log("function startup start")
+  StartOfActiveDatetimeLocal = document.getElementById("id_StartOfActive_datetime-local");
+  EndOfActiveDatetimeLocal = document.getElementById("id_EndOfActive_datetime-local");
+  StartOfActive_datetime_local_ForChange = document.getElementById("id_StartOfActive_datetime-local_ForChange")
+  EndOfActive_datetime_local_ForChange = document.getElementById("id_EndOfActive_datetime-local_ForChange")
+  StartOfActiveDatetimeLocal.addEventListener("change", functionEvent, false);
+  EndOfActiveDatetimeLocal.addEventListener("change", functionEvent, false);
+  StartOfActive_datetime_local_ForChange.addEventListener("change", functionEvent, false);
+  EndOfActive_datetime_local_ForChange.addEventListener("change", functionEvent, false);
+  console.log("function startup end")
+  var errorformChange="{{formForChange.errors|escapejs}}"
+  if (errorformChange){
+    var popup = document.getElementById("popupPromocode");
+    popup.classList.add("open");
+  }
+}
 
+let unlock = true;
+const popuplinks = document.querySelectorAll('.popup-link')
+if (popuplinks.length>0){
+  for (let index = 0; index<popuplinks.length; index++){
+    const popuplink = popuplinks[index];
+    popuplink.addEventListener("click",function(e){
+    const popupName = popuplink.getAttribute('href').replace('#','');
+    const curentPopup = document.getElementById(popupName);
+    popupOpen(curentPopup);
+    e.preventDefault();
+    });
+  }
+}
+
+const popupCloseIcon = document.querySelectorAll('.close-popup');
+if (popupCloseIcon.length > 0) {
+  for (let index = 0; index < popupCloseIcon.length;index++){
+    const el = popupCloseIcon[index];
+    el.addEventListener('click',function (e) {
+      popupClose(el.closest('.popup'));
+      e.preventDefault();
+      });
+  }
+}
+
+
+function popupOpen(curentPopup){
+  if(curentPopup && unlock) {
+    const popupActive = document.querySelector('.popup.open');
+    if (popupActive) {
+      popupClose(popupActive,false);
+    }
+    curentPopup.classList.add('open');
+    curentPopup.addEventListener("click", function (e) {
+      if (!e.target.closest('.popup__content')) {
+        popupClose(e.target.closest('.popup'));
+      }
+    });
+  }
+}
+
+function popupClose(popupActive) {
+    popupActive.classList.remove('open');
 }
 
 function functionEvent(event) {
-document.getElementById('id_StartOfActive').value=StartOfActiveDatetimeLocal.value
-document.getElementById('id_EndOfActive').value=EndOfActiveDatetimeLocal.value
-document.getElementById('id_StartOfActive_ForChange').value=StartOfActive_datetime_local_ForChange.value
-document.getElementById('id_EndOfActive_ForChange').value=EndOfActive_datetime_local_ForChange.value
+  document.getElementById('id_StartOfActive').value=StartOfActiveDatetimeLocal.value
+  document.getElementById('id_EndOfActive').value=EndOfActiveDatetimeLocal.value
+  document.getElementById('id_StartOfActive_ForChange').value=StartOfActive_datetime_local_ForChange.value
+  document.getElementById('id_EndOfActive_ForChange').value=EndOfActive_datetime_local_ForChange.value
 }
 
 
 
 function popupPromocode(promocodeId, NameOfPromoCode,TypeOfPromoCodeID,StatusOfPromoCodeID,Limit,Sum,StartOfActive,EndOfActive,DateOfCreation) {
-console.log("popupPromocode")
-document.getElementById("promocodeId").value = promocodeId;
-console.log(promocodeId)
-document.getElementById("id_NameOfPromoCode_ForChange").value = NameOfPromoCode;
-document.getElementById("id_TypeOfPromoCode_ForChange").value = TypeOfPromoCodeID;
-document.getElementById("id_StatusOfPromoCode_ForChange").value = StatusOfPromoCodeID;
-document.getElementById("id_Limit_ForChange").value = Limit;
-document.getElementById("id_Sum_ForChange").value = parseFloat(Sum);
-document.getElementById("id_StartOfActive_datetime-local_ForChange").value = StartOfActive;
-document.getElementById("id_StartOfActive_ForChange").value = StartOfActive;
-document.getElementById("id_EndOfActive_datetime-local_ForChange").value = EndOfActive;
-document.getElementById("id_EndOfActive_ForChange").value = EndOfActive;
+  document.getElementById("promocodeId").value = promocodeId;
+  document.getElementById("id_NameOfPromoCode_ForChange").value = NameOfPromoCode;
+  document.getElementById("id_TypeOfPromoCode_ForChange").value = TypeOfPromoCodeID;
+  document.getElementById("id_StatusOfPromoCode_ForChange").value = StatusOfPromoCodeID;
+  document.getElementById("id_Limit_ForChange").value = Limit;
+  document.getElementById("id_Sum_ForChange").value = parseFloat(Sum);
+  document.getElementById("id_StartOfActive_datetime-local_ForChange").value = StartOfActive;
+  document.getElementById("id_StartOfActive_ForChange").value = StartOfActive;
+  document.getElementById("id_EndOfActive_datetime-local_ForChange").value = EndOfActive;
+  document.getElementById("id_EndOfActive_ForChange").value = EndOfActive;
 }
-
 </script>
 {% endblock %}
 

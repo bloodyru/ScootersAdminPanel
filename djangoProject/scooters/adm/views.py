@@ -196,11 +196,9 @@ def promocodes(request):
             PromoCode.save()
         else:
             print("ChangeForm error")
-            errorformChange = formChange.errors # если форма заполнена не правильно отправляем ошибки на страницу
-            return TemplateResponse (request ,'adm/promocodes.html', {'form': form, 'formForChange': formForChange, 'summ': summ,
-                                                 'nn': nn, 'name': name, 'Promocodes': Promocodes,'errorformChange': errorformChange})
-            # return render(request, 'adm/promocodes.html', {'form': form, 'formForChange': formForChange, 'summ': summ,
-            #                                     'nn': nn, 'name': name, 'Promocodes': Promocodes,'errorformChange': errorformChange})
+            formForChange = ChangePromocodeForm(request.POST)
+            return render (request ,'adm/promocodes.html/', {'form': form, 'formForChange': formForChange, 'summ': summ,
+                                                 'nn': nn, 'name': name, 'Promocodes': Promocodes})
         return redirect('promocodes.html')
     return render(request, 'adm/promocodes.html', {'form': form, 'formForChange':formForChange, 'summ': summ,
                                                    'nn': nn,'name': name, 'Promocodes': Promocodes,'error': error})

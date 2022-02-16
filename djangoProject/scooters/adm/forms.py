@@ -116,7 +116,7 @@ class ChangePromocodeForm(forms.ModelForm):
             "TypeOfPromoCode": Select(attrs={'style': 'width:100%', 'id':'id_TypeOfPromoCode_ForChange'}),
             "StatusOfPromoCode": Select(attrs={'style': 'width:100%', 'id':'id_StatusOfPromoCode_ForChange'}),
             "Limit": TextInput(attrs={'style': 'width:100%', 'id':'id_Limit_ForChange'}),
-            "Sum": TextInput(attrs={'style': 'width:100%', 'id':'id_Sum_ForChange'}),
+            "Sum": TextInput(attrs={'placeholder': 'Сумма','style': 'width:100%', 'id':'id_Sum_ForChange'}),
             "StartOfActive": DateTimeInput(attrs={'style': 'display:none', 'id':'id_StartOfActive_ForChange'}),
             "EndOfActive": DateTimeInput(attrs={'style': 'display:none; width:100%', 'id':'id_EndOfActive_ForChange'}),
         }
